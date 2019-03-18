@@ -100,4 +100,5 @@
  /mnt/hgfs/share/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/spi_flash.h \
  hal_key.h gpio.h \
  /mnt/hgfs/share/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/espconn.h \
- /mnt/hgfs/share/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/airkiss.h
+ /mnt/hgfs/share/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/airkiss.h \
+ RF.h

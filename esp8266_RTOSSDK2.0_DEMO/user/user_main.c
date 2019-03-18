@@ -35,6 +35,9 @@
 #include "espressif/espconn.h"
 #include "espressif/airkiss.h"
 
+#include "RF.h"
+
+
 
 
 
@@ -284,6 +287,61 @@ LOCAL void ICACHE_FLASH_ATTR keyTask(void *pvParameters)
 
 }
 */
+LOCAL void ICACHE_FLASH_ATTR rf_task(void *pvParameters)
+{
+	unsigned char txchr[10]= {0x41,0x42,0x43,0x44,0x45,0x46,0x47,0x48,0x49,0x6d};
+	uint8_t rf_ch=0;
+	unsigned char Rxchr[20]= {0};
+
+	//RF_RxMode();
+	for(;;)
+	{	
+		
+		rf_ch=0;
+		RF_Init();
+		vTaskDelay(150/portTICK_RATE_MS);
+		
+		if((ucRF_GetStatus()&&TX_DS_FLAG))
+		{	  
+			RF_ClearFIFO();
+			RF_ClearStatus ();  
+			os_printf("\r\n ·¢ËÍÍê³É \r\n");
+		} //PC_CR2=0x020; 	
+		os_printf("\r\n ucRF_GetStatus:%d \r\n",ucRF_GetStatus());
+
+		RF_TxMode();
+		rf_ch=ucRF_ReadReg(RF_CH);
+		os_printf("\r\n rf_ch:%d \r\n",rf_ch);
+		{
+			if (rf_ch==78)
+			{
+					//os_printf("\r\n rf_ch:%d \r\n",rf_ch);
+				ucRF_TxData(txchr,10);
+			}
+		}
+
+		vTaskDelay(150/portTICK_RATE_MS);
+		
+		/*
+		rf_ch=ucRF_ReadReg(RF_CH);
+		os_printf("\r\n rf_ch:%d \r\n",rf_ch);
+
+		if(!IRQ_STATUS)
+		{
+			RF_ClearStatus ();  
+			ucRF_DumpRxData(Rxchr,15);
+			RF_ClearFIFO();
+			os_printf("\r\nRxchr:%s\r\n",Rxchr);
+		}
+		vTaskDelay(100/portTICK_RATE_MS);
+		*/
+		
+		
+	}
+
+}
+
+
 
 
 
@@ -296,7 +354,9 @@ LOCAL void ICACHE_FLASH_ATTR keyTask(void *pvParameters)
 void user_init(void)
 {
 	//my_uart_init_new();
-	keyInit();
+//	keyInit();
+	RF_Init();//test rf 
+
 	uart_init_new();
     printf("SDK version:%s\n", system_get_sdk_version());
     vTaskDelay(2000/portTICK_RATE_MS);
@@ -312,16 +372,12 @@ void user_init(void)
 		storage_list.init_flag=STORAGE_INIT;
 		system_param_save_with_protect(XZH_PARAM_START_SEC,(void *)&storage_list,sizeof(storage_list));
 		printf("\r\n system_param_save_with_protect storage_list ok sec=%d len=%d \r\n",XZH_PARAM_START_SEC,sizeof(storage_list));
-	}
-
+	} 
     set_on_station_connect(on_wifi_connect);
     set_on_station_disconnect(on_wifi_disconnect);
     init_esp_wifi();//
     //stop_wifi_ap();
 
-    
-
 	tcp_client_start();
-	
-	//xTaskCreate(keyTask, "keyTask", 4096, NULL, 6, NULL);
+	xTaskCreate(rf_task, "rf_task", 4096, NULL, 6, NULL);
 }

@@ -149,35 +149,11 @@
         SET_PERI_REG_MASK(PIN_NAME, (((FUNC & BIT2) << 2) | (FUNC & 0x3)) << PERIPHS_IO_MUX_FUNC_S); \
     } while (0)
 	//按键相关定义
-#define GPIO_KEY_NUM                            3                           ///< 定义按键成员总数
+#define GPIO_KEY_NUM                            1                           ///< 定义按键成员总数
 	
-#define KEY_0_IO_MUX                            PERIPHS_IO_MUX_MTMS_U      ///< ESP8266 GPIO 功能
-#define KEY_0_IO_NUM                            14                           ///< ESP8266 GPIO 编号
-#define KEY_0_IO_FUNC                           FUNC_GPIO14                  ///< ESP8266 GPIO 名称
-
-#define KEY_0O_IO_MUX                            PERIPHS_IO_MUX_MTDI_U      ///< ESP8266 GPIO 功能
-#define KEY_0O_IO_NUM                            12                           ///< ESP8266 GPIO 编号
-#define KEY_0O_IO_FUNC                           FUNC_GPIO12                  ///< ESP8266 GPIO 名称
-
-
-	
-#define KEY_1_IO_MUX                            PERIPHS_IO_MUX_MTCK_U       ///< ESP8266 GPIO 功能
-#define KEY_1_IO_NUM                            13                          ///< ESP8266 GPIO 编号
-#define KEY_1_IO_FUNC                           FUNC_GPIO13                 ///< ESP8266 GPIO 名称
-
-#define KEY_1O_IO_MUX                            PERIPHS_IO_MUX_GPIO4_U       ///< ESP8266 GPIO 功能
-#define KEY_1O_IO_NUM                            4                          ///< ESP8266 GPIO 编号
-#define KEY_1O_IO_FUNC                           FUNC_GPIO4               ///< ESP8266 GPIO 名称
-
-	
-#define KEY_2_IO_MUX                            PERIPHS_IO_MUX_GPIO0_U       ///< ESP8266 GPIO 功能
-#define KEY_2_IO_NUM                            0                          ///< ESP8266 GPIO 编号
-#define KEY_2_IO_FUNC                           FUNC_GPIO0              ///< ESP8266 GPIO 名称
-
-#define KEY_2O_IO_MUX                             PERIPHS_IO_MUX_GPIO5_U      ///< ESP8266 GPIO 功能
-#define KEY_2O_IO_NUM                            5                          ///< ESP8266 GPIO 编号
-#define KEY_2O_IO_FUNC                           FUNC_GPIO5             ///< ESP8266 GPIO 名称
-
-													///< 定义总的按键模块结构体指针  
+#define KEY_0_IO_MUX                            PERIPHS_IO_MUX_GPIO0_U      ///< ESP8266 GPIO 功能
+#define KEY_0_IO_NUM                            0                           ///< ESP8266 GPIO 编号
+#define KEY_0_IO_FUNC                           FUNC_GPIO0                  ///< ESP8266 GPIO 名称
+ 
 
 #endif //_PIN_MUX_H_
