@@ -174,7 +174,7 @@ void user_init(void)
 	keyInit();
 	uart_init_new();
     printf("SDK version:%s\n", system_get_sdk_version());
-    vTaskDelay(2000/portTICK_RATE_MS);
+    //vTaskDelay(2000/portTICK_RATE_MS);
     
 
 	if(system_param_load(XZH_PARAM_START_SEC,0,(void *)&storage_list,sizeof(storage_list))==true)

@@ -101,7 +101,9 @@
  hal_key.h gpio.h \
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/espconn.h \
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/airkiss.h \
- RF.h mymqtt.h ../include/wifi_state_machine.h \
+ RF.h mymqtt.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/airkiss.h \
+ ../include/wifi_state_machine.h \
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTFreeRTOS.h \
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/openssl/openssl/ssl.h \
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/openssl/internal/ssl_x509.h \
@@ -126,4 +128,5 @@
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTFormat.h \
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTSubscribe.h \
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTUnsubscribe.h \
- /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/StackTrace.h
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/StackTrace.h \
+ myfifo.h

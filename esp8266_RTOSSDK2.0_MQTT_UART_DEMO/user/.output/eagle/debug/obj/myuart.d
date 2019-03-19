@@ -78,9 +78,7 @@
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/spi_flash.h \
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/pwm.h \
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/freertos/queue.h \
- ../include/myuart.h ../include/edpkit.h \
- /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/json/cJSON.h \
- ../include/mytcp.h ../include/user_config.h \
+ ../include/myuart.h ../include/mytcp.h ../include/user_config.h \
  ../include/wifi_state_machine.h \
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/c_types.h \
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/esp_wifi.h \
@@ -93,4 +91,36 @@
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/lwip/arch/sys_arch.h \
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/freertos/semphr.h \
  /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/freertos/queue.h \
- /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/lwip/lwip/netdb.h
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/lwip/lwip/netdb.h \
+ myfifo.h mymqtt.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/airkiss.h \
+ ../include/user_config.h ../include/wifi_state_machine.h \
+ ../include/mystorage.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/upgrade.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/spi_flash.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTFreeRTOS.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/openssl/openssl/ssl.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/openssl/internal/ssl_x509.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/openssl/internal/ssl_types.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/openssl/internal/ssl_code.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/openssl/internal/ssl3.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/openssl/internal/tls1.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/openssl/internal/x509_vfy.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/openssl/internal/ssl_stack.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/openssl/internal/ssl_pkey.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTClient.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTPacket.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTConnect.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTPublish.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTSubscribe.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTUnsubscribe.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTFormat.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/StackTrace.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTFreeRTOS.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTConnect.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTPublish.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTFormat.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTSubscribe.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/MQTTUnsubscribe.h \
+ /mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0//include/mqtt/StackTrace.h \
+ myfifo.h

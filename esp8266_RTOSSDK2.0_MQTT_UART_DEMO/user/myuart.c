@@ -29,8 +29,11 @@
 #include "freertos/queue.h"
 
 #include "myuart.h"
-#include "edpkit.h"
 #include "mytcp.h"
+#include "myfifo.h"
+#include "mymqtt.h"
+
+
 
 void  CheckUartData(uint8_t * data,uint16_t datalenght);
 
@@ -52,7 +55,7 @@ uint16_t uart_recv_len=0;
 xTaskHandle xUartTaskHandle;
 xQueueHandle xQueueUart;
 
-LOCAL STATUS
+STATUS
 uart_tx_one_char(uint8 uart, uint8 TxChar)
 {
     while (true) {
@@ -438,7 +441,9 @@ uart0_rx_intr_handler(void *para)
 void  CheckUartData(uint8_t * data,uint16_t datalenght)
 {
 	uint16_t i;
-	os_printf("\r\n /***************** TX433 Send to ESP8266 ***************/\r\n DATA:");
+	char answer[30];
+	char *pdata=(char *)&answer;
+	os_printf("\r\n /***************** Uart Send to ESP8266 ***************/\r\n DATA:");
 	for(i=0;i<=datalenght;i++){
 		os_printf("%02x ",data[i]);
 
@@ -446,14 +451,56 @@ void  CheckUartData(uint8_t * data,uint16_t datalenght)
 	os_printf("\r\nDATA length:%d",datalenght);
     os_printf("\r\n");
 
+    switch(mqtt_task_status_get())
+    {
+    	case mqtt_task_status_INIT:
+    	{
+    	    strcpy(answer,"$mqtt_task_status_INIT$");
+			for(i=0;i<strlen(answer);i++)
+			{
+				uart_tx_one_char(0,(uint8_t) *(pdata+i));
+			}
 
-	tcp_client_state=tcp_client_state_SENDDATA;
-
-
-	memcpy(&tcp_send_buffer,&uart_recv_buf,uart_recv_len);
-	
+    	}
+    	break;
+    	case mqtt_task_status_WAITMARTLINK:
+    	{
+    	    strcpy(answer,"$mqtt_task_status_WAITMARTLINK$");
+			for(i=0;i<strlen(answer);i++)
+			{
+				uart_tx_one_char(0,(uint8_t) *(pdata+i));
+			}
+    	}
+    	break;
+    	case mqtt_task_status_WAITWIFI:
+    	{
+    		strcpy(answer,"$mqtt_task_status_WAITWIFI$");
+			for(i=0;i<strlen(answer);i++)
+			{
+				uart_tx_one_char(0,(uint8_t) *(pdata+i));
+			}
+    	}
+    	break;
+    	case mqtt_task_status_WAITM2M://正在连云端
+    	{
+    		strcpy(answer,"$mqtt_task_status_WAITM2M$");
+			for(i=0;i<strlen(answer);i++)
+			{
+				uart_tx_one_char(0,(uint8_t) *(pdata+i));
+			}
+    	}
+    	break;
+    	case mqtt_task_status_IDLE://连上正常透传
+    	{
+    		FIFO_WriteData(&mqtt_fifo,(uint8_t *)&uart_recv_buf,datalenght);
+    	}
+    	default:
+    	break;
+    }
 	memset(uart_recv_buf,0,sizeof(uart_recv_buf));
 	uart_recv_len=0;
+
+	
 
 }
 
@@ -466,7 +513,7 @@ uart_init_new(void)
     UART_WaitTxFifoEmpty(UART1);
 
     UART_ConfigTypeDef uart_config;
-    uart_config.baud_rate    = BIT_RATE_57600;
+    uart_config.baud_rate    = BIT_RATE_115200;
     uart_config.data_bits     = UART_WordLength_8b;
     uart_config.parity          = USART_Parity_None;
     uart_config.stop_bits     = USART_StopBits_1;
@@ -477,12 +524,12 @@ uart_init_new(void)
 
     UART_IntrConfTypeDef uart_intr;
     uart_intr.UART_IntrEnMask = UART_RXFIFO_TOUT_INT_ENA | UART_FRM_ERR_INT_ENA | UART_RXFIFO_FULL_INT_ENA | UART_TXFIFO_EMPTY_INT_ENA;
-    uart_intr.UART_RX_FifoFullIntrThresh = 10;
-    uart_intr.UART_RX_TimeOutIntrThresh = 2;
+    uart_intr.UART_RX_FifoFullIntrThresh = 20;
+    uart_intr.UART_RX_TimeOutIntrThresh = 10;
     uart_intr.UART_TX_FifoEmptyIntrThresh = 20;
     UART_IntrConfig(UART0, &uart_intr);
 
-    UART_SetPrintPort(UART0);
+    UART_SetPrintPort(UART0);//设置系统打印口为UART0
     UART_intr_handler_register(uart0_rx_intr_handler, NULL);
     ETS_UART_INTR_ENABLE();
 
