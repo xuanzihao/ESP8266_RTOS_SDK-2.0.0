@@ -1,0 +1,12 @@
+---- ota_start Matches (8 in 4 files) ----
+mqtt_task in mymqtt.c (user) : 			ota_start();
+mqtt_task in mymqtt.c (user) : 						ota_start();
+mymqtt.h (user) line 61 : extern void ota_start();
+myota.c (user) line 222 : static void hilink_ota_start(void* param)//开始远程升级
+myota.c (user) line 386 : void ota_start()
+ota_start in myota.c (user) : 		xTaskCreate(hilink_ota_start, "hilink_ota_start_task", 4096, NULL, 5, ota_task_handle);//将优先级2改为4要注意
+myota.h (user) line 14 : void ota_start();
+---- ota_start Search Errors Encountered (2) ----
+The following 2 files could not be processed:
+G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\esp8266_RTOSSDK2.0_MQTT_UART_DEMO\user\osapi.h : File could not be opened.
+G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\esp8266_RTOSSDK2.0_MQTT_UART_DEMO\user\upgrade.h : File could not be opened.
