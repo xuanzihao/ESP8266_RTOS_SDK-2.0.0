@@ -3,7 +3,7 @@
 #include <string.h>
 //#include <assert.h>
 #include <time.h>
-#include "EdpKit.h"
+#include "edpkit.h"
 
 #define MKFUN_PACKET_SAVE_DATA(TYPE, NAME)                      \
     EdpPacket* PacketSavedata##NAME(SaveDataType type,			\

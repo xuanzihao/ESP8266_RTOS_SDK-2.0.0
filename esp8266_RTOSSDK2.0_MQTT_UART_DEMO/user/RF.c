@@ -8,7 +8,7 @@
 //  * @modify date:   
 //  * website :   www.ybdzkj.com  长沙云宝电子科技有限公司
 //============================================================================//
-#include "RF.H"
+#include "RF.h"
 
 const unsigned char  TX_ADDRESS_DEF[5] = {0xCC,0xCC,0xCC,0xCC,0xCC};    		//RF 地址：接收端和发送端需一致
 

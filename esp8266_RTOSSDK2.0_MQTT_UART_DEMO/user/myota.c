@@ -393,8 +393,20 @@ void ota_start()
 	char url[]="http://file2.hxjiot.com/firmware/C85F7DD0B2B000012E82246C1D3C8DD0.bin";
 	printf("\r\nparseurl\r\n");
 	//http_parse_request_url((char *)&url,ota_host,filename,&port);//解析获取到的URL
-	strcpy(ota_host,"appweb.hxjiot.com");
-	strcpy(filename,"Hilink_428---425_user1.bin");
+
+	if (system_upgrade_userbin_check() == UPGRADE_FW_BIN1) //判断当前运行的bin文件是user1还是user2
+	{
+		strcpy(ota_host,"appweb.hxjiot.com");
+		strcpy(filename,"Hilink_428---425_user2.bin");
+
+	}
+	else
+	{
+		strcpy(ota_host,"appweb.hxjiot.com");
+		strcpy(filename,"Hilink_428---425_user1.bin");
+
+	}
+	
 	port=80;
 	printf("\r\nparseurlok\r\n");
 	if (!ota_task_handle) {
