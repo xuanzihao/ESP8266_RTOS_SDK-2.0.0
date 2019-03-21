@@ -45,7 +45,7 @@
 #define MQTT_CLIENTID     "testid1"
 #define MQTT_USERNAME	"usermane"
 #define MQTT_PASSWORD	"password"
-#define MQTT_KEEPALIVEINTERVAL 15
+#define MQTT_KEEPALIVEINTERVAL 10
 
 enum
 {

@@ -213,6 +213,7 @@ int keepalive(MQTTClient* c)
 {
     int rc = SUCCESS;
 
+	
     if (c->keepAliveInterval == 0)
         goto exit;
 
@@ -222,6 +223,7 @@ int keepalive(MQTTClient* c)
             rc = FAILURE; /* PINGRESP not received in keepalive interval */
         else
         {
+        	printf("\r\n mqtt_lib keepalive MQTTSerialize_pingreq \r\n");
             Timer timer;
             TimerInit(&timer);
             TimerCountdownMS(&timer, 1000);
@@ -358,7 +360,7 @@ int MQTTYield(MQTTClient* c, int timeout_ms)
     return rc;
 }
 
-
+#if 0
 void MQTTRun(void* parm)
 {
 	Timer timer;
@@ -378,6 +380,31 @@ void MQTTRun(void* parm)
 #endif
 	}
 }
+#else 
+void MQTTRun(void* parm)
+{
+    Timer timer;
+    MQTTClient* c = (MQTTClient*)parm;
+    int rc = 0;
+    TimerInit(&timer);
+    while (1) {
+        TimerCountdownMS(&timer, 500); // Don't wait too long if no traffic is incoming
+#if defined(MQTT_TASK)
+        MutexLock(&c->mutex);
+#endif
+        rc = cycle(c, &timer);
+#if defined(MQTT_TASK)
+        MutexUnlock(&c->mutex);
+#endif
+        if (rc < 0){
+        	break;
+        }
+    }
+    vTaskDelete(NULL);
+    return;
+}
+
+#endif
 
 
 #if defined(MQTT_TASK)

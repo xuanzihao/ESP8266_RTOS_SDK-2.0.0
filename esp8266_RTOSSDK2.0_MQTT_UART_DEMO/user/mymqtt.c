@@ -83,6 +83,7 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 	uint8_t wait_ip_cont=0;
 	uint8_t mqtt_err_cont=0;
 	uint8_t mqtt_reconnect_flag=0;
+	bool task_first_flag = false;
 	MQTTClient client;
 	Network network;
 	unsigned char sendbuf[512], readbuf[512] = {0};
@@ -146,7 +147,10 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 			
 
 			if(mqtt_err_cont++==4)
-			system_restart();
+			{
+				printf("\r\n mqtt_err_cont 4 restart\r\n");
+				system_restart();
+			}
 
 			if ((rc = NetworkConnect(&network, address, MQTT_PORT)) != 0) {
 				printf("Return code from network connect is %d\n", rc);
@@ -170,14 +174,19 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 			} else {
 				printf("MQTT Connected\n");
 			}
+			if(task_first_flag==false)//TASK只运行一次
+			{
+				task_first_flag=true;
+				if ((rc = MQTTStartTask(&client)) != pdPASS) {
+					printf("Return code from start tasks is %d\n", rc);
+					network.disconnect(&network);
+					continue;//重复等待
+				} else {
+					printf("Use MQTTStartTask\n");
+				}
 
-			if ((rc = MQTTStartTask(&client)) != pdPASS) {
-				printf("Return code from start tasks is %d\n", rc);
-				network.disconnect(&network);
-				continue;//重复等待
-			} else {
-				printf("Use MQTTStartTask\n");
 			}
+
 
 			if ((rc = MQTTSubscribe(&client,MQTT_SUBSCRIBE, QOS0, messageArrived)) != 0) {
 				printf("Return code from MQTT subscribe is %d\n", rc);
@@ -200,8 +209,8 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 				{
 					case mqtt_task_status_IDLE:
 					{
-						
-						if(mqtt_task_cont%300==2)
+
+						if(mqtt_task_cont%200==2)
 						{
 							sntp_gettime();
 
@@ -223,6 +232,11 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 								printf("MQTT publish topic \"ESP8266/sample/pub\", message number is %d\n", count);
 							}
 							*/
+							printf("\r\nmqtt_client.isconnected=%d\r\n",client.isconnected);
+							if(client.isconnected==0)
+							{	
+								mqtt_reconnect_flag=1;
+							}
 							os_printf("freeHeap: %d\n",system_get_free_heap_size());
 
 						}
