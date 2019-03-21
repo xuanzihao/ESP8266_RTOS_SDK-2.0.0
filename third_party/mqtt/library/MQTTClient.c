@@ -223,7 +223,7 @@ int keepalive(MQTTClient* c)
             rc = FAILURE; /* PINGRESP not received in keepalive interval */
         else
         {
-        	printf("\r\n mqtt_lib keepalive MQTTSerialize_pingreq \r\n");
+        	//printf("\r\n mqtt_lib keepalive MQTTSerialize_pingreq \r\n");
             Timer timer;
             TimerInit(&timer);
             TimerCountdownMS(&timer, 1000);
@@ -360,7 +360,7 @@ int MQTTYield(MQTTClient* c, int timeout_ms)
     return rc;
 }
 
-#if 0
+#if 1
 void MQTTRun(void* parm)
 {
 	Timer timer;

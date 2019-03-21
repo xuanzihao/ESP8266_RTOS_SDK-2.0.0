@@ -210,7 +210,16 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 					case mqtt_task_status_IDLE:
 					{
 
-						if(mqtt_task_cont%200==2)
+						if((mqtt_task_cont%40==2))//1.2sºÏ≤È“ª¥Œmqtt
+						{
+							if(client.isconnected==0)
+							{	
+								mqtt_reconnect_flag=1;
+							}
+
+						}
+						
+						if(mqtt_task_cont%2000==2)
 						{
 							sntp_gettime();
 
