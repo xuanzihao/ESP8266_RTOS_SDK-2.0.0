@@ -397,7 +397,8 @@ uart0_rx_intr_handler(void *para)
             }
 
             WRITE_PERI_REG(UART_INT_CLR(UART0), UART_RXFIFO_FULL_INT_CLR);
-        } else if (UART_RXFIFO_TOUT_INT_ST == (uart_intr_status & UART_RXFIFO_TOUT_INT_ST)) {
+        } 
+        else if (UART_RXFIFO_TOUT_INT_ST == (uart_intr_status & UART_RXFIFO_TOUT_INT_ST)) {
             printf("tout\r\n");
             fifo_len = (READ_PERI_REG(UART_STATUS(UART0)) >> UART_RXFIFO_CNT_S)&UART_RXFIFO_CNT;
             buf_idx = 0;
@@ -524,9 +525,9 @@ uart_init_new(void)
 
     UART_IntrConfTypeDef uart_intr;
     uart_intr.UART_IntrEnMask = UART_RXFIFO_TOUT_INT_ENA | UART_FRM_ERR_INT_ENA | UART_RXFIFO_FULL_INT_ENA | UART_TXFIFO_EMPTY_INT_ENA;
-    uart_intr.UART_RX_FifoFullIntrThresh = 20;
-    uart_intr.UART_RX_TimeOutIntrThresh = 10;
-    uart_intr.UART_TX_FifoEmptyIntrThresh = 20;
+    uart_intr.UART_RX_FifoFullIntrThresh = 63;
+    uart_intr.UART_RX_TimeOutIntrThresh = 0x8;
+    uart_intr.UART_TX_FifoEmptyIntrThresh = 0x10;
     UART_IntrConfig(UART0, &uart_intr);
 
     UART_SetPrintPort(UART0);//设置系统打印口为UART0

@@ -248,7 +248,7 @@ static void hilink_ota_start(void* param)//开始远程升级
 	printf("Hello, welcome to client!\r\n");
 
 	system_upgrade_flag_set(UPGRADE_FLAG_START);
-	system_upgrade_init();
+	system_upgrade_init();//upgradeinit，判断当前的ota地址是user1还是user2
 
 	ota_socket = socket(PF_INET, SOCK_STREAM, 0);
 
@@ -349,8 +349,8 @@ static void hilink_ota_start(void* param)//开始远程升级
 
 /*从URL中提取域名和端口、文件函数*/
 void  http_parse_request_url(char *URL,char *host,char *filename,int32_t *port){
-	char *PA=(char*)os_malloc(strlen(URL));
-	char *PB=(char*)os_malloc(strlen(URL));
+	char *PA=(char*)malloc(strlen(URL));
+	char *PB=(char*)malloc(strlen(URL));
 	memset(host,0,sizeof(host));//给host初始化
 	memset(filename,0,sizeof(filename));//给filename初始化
 	*port=0;

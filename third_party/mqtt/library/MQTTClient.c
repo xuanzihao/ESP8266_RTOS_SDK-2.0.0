@@ -360,7 +360,7 @@ int MQTTYield(MQTTClient* c, int timeout_ms)
     return rc;
 }
 
-#if 1
+#if 0
 void MQTTRun(void* parm)
 {
 	Timer timer;

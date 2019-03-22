@@ -174,7 +174,7 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 			} else {
 				printf("MQTT Connected\n");
 			}
-			if(task_first_flag==false)//TASK只运行一次
+			//if(task_first_flag==false)//TASK只运行一次
 			{
 				task_first_flag=true;
 				if ((rc = MQTTStartTask(&client)) != pdPASS) {

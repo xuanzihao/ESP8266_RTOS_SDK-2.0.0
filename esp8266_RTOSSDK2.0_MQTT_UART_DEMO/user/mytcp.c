@@ -653,7 +653,6 @@ static void ICACHE_FLASH_ATTR tcp_client_task(void *pvParameters)
 					}
 					}
 					*/
-
 					switch(tcp_client_state)
 					{
 						case tcp_client_state_CLR://
