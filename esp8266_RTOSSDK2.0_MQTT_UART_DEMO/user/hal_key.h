@@ -58,6 +58,13 @@ typedef struct
     key_typedef_t ** singleKey; 
 }keys_typedef_t; 
 
+#define GPIO_KEY_NUM                            1                           ///< 定义按键成员总数
+	
+#define KEY_0_IO_MUX                            PERIPHS_IO_MUX_GPIO0_U      ///< ESP8266 GPIO 功能
+#define KEY_0_IO_NUM                            0                           ///< ESP8266 GPIO 编号
+#define KEY_0_IO_FUNC                           FUNC_GPIO0                  ///< ESP8266 GPIO 名称
+
+
 /* Function declaration */
 
 void gokitKeyHandle(keys_typedef_t * keys); 

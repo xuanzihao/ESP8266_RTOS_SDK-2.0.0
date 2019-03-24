@@ -41,6 +41,7 @@ typedef struct
 	uint8_t init_flag;
 	uint8_t ssid[32];
 	uint8_t passowrd[64];
+	uint8_t device_id[10];
 }Storage_list;
 
 

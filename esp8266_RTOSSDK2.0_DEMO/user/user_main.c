@@ -354,8 +354,8 @@ LOCAL void ICACHE_FLASH_ATTR rf_task(void *pvParameters)
 void user_init(void)
 {
 	//my_uart_init_new();
-//	keyInit();
-	RF_Init();//test rf 
+	keyInit();
+//	RF_Init();//test rf 
 
 	uart_init_new();
     printf("SDK version:%s\n", system_get_sdk_version());
@@ -379,5 +379,5 @@ void user_init(void)
     //stop_wifi_ap();
 
 	tcp_client_start();
-	xTaskCreate(rf_task, "rf_task", 4096, NULL, 6, NULL);
+//	xTaskCreate(rf_task, "rf_task", 4096, NULL, 6, NULL);
 }

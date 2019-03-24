@@ -38,6 +38,37 @@
 #define KEY_LIAN                                0x4000
 #define KEY_LONG                                0x8000
 
+#define GPIO_KEY_NUM                            3                           ///< 定义按键成员总数
+	
+#define KEY_0_IO_MUX                            PERIPHS_IO_MUX_GPIO0_U      ///< ESP8266 GPIO 功能
+#define KEY_0_IO_NUM                            0                           ///< ESP8266 GPIO 编号
+#define KEY_0_IO_FUNC                           FUNC_GPIO0                  ///< ESP8266 GPIO 名称
+
+#define KEY_0O_IO_MUX                            PERIPHS_IO_MUX_GPIO5_U      ///< ESP8266 GPIO 功能
+#define KEY_0O_IO_NUM							5
+#define KEY_0O_IO_FUNC                           FUNC_GPIO5                  ///< ESP8266 GPIO 名称
+
+#define KEY_1_IO_MUX                            PERIPHS_IO_MUX_MTCK_U      ///< ESP8266 GPIO 功能
+#define KEY_1_IO_NUM                            13                           ///< ESP8266 GPIO 编号
+#define KEY_1_IO_FUNC                           FUNC_GPIO13                  ///< ESP8266 GPIO 名称
+
+#define KEY_1O_IO_MUX                            PERIPHS_IO_MUX_GPIO4_U      ///< ESP8266 GPIO 功能
+#define KEY_1O_IO_NUM                            4                           ///< ESP8266 GPIO 编号
+#define KEY_1O_IO_FUNC                           FUNC_GPIO4                  ///< ESP8266 GPIO 名称
+
+
+#define KEY_2_IO_MUX                            PERIPHS_IO_MUX_MTMS_U      ///< ESP8266 GPIO 功能
+#define KEY_2_IO_NUM                            14                           ///< ESP8266 GPIO 编号
+#define KEY_2_IO_FUNC                           FUNC_GPIO14                  ///< ESP8266 GPIO 名称
+
+#define KEY_2O_IO_MUX                            PERIPHS_IO_MUX_MTDI_U      ///< ESP8266 GPIO 功能
+#define KEY_2O_IO_NUM                            12                           ///< ESP8266 GPIO 编号
+#define KEY_2O_IO_FUNC                           FUNC_GPIO12                  ///< ESP8266 GPIO 名称
+
+
+
+
+
 typedef void (*gokit_key_function)(void);
 
 typedef struct
