@@ -147,13 +147,7 @@
 #define PIN_FUNC_SELECT(PIN_NAME, FUNC)  do { \
         CLEAR_PERI_REG_MASK(PIN_NAME, (PERIPHS_IO_MUX_FUNC << PERIPHS_IO_MUX_FUNC_S)); \
         SET_PERI_REG_MASK(PIN_NAME, (((FUNC & BIT2) << 2) | (FUNC & 0x3)) << PERIPHS_IO_MUX_FUNC_S); \
-    } while (0)
-	//按键相关定义
-#define GPIO_KEY_NUM                            1                           ///< 定义按键成员总数
-	
-#define KEY_0_IO_MUX                            PERIPHS_IO_MUX_GPIO0_U      ///< ESP8266 GPIO 功能
-#define KEY_0_IO_NUM                            0                           ///< ESP8266 GPIO 编号
-#define KEY_0_IO_FUNC                           FUNC_GPIO0                  ///< ESP8266 GPIO 名称
+    } while (0)              
  
 
 #endif //_PIN_MUX_H_

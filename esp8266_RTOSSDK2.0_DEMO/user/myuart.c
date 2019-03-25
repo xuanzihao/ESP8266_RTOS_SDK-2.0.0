@@ -466,7 +466,7 @@ uart_init_new(void)
     UART_WaitTxFifoEmpty(UART1);
 
     UART_ConfigTypeDef uart_config;
-    uart_config.baud_rate    = BIT_RATE_57600;
+    uart_config.baud_rate    = BIT_RATE_115200;
     uart_config.data_bits     = UART_WordLength_8b;
     uart_config.parity          = USART_Parity_None;
     uart_config.stop_bits     = USART_StopBits_1;
@@ -477,9 +477,9 @@ uart_init_new(void)
 
     UART_IntrConfTypeDef uart_intr;
     uart_intr.UART_IntrEnMask = UART_RXFIFO_TOUT_INT_ENA | UART_FRM_ERR_INT_ENA | UART_RXFIFO_FULL_INT_ENA | UART_TXFIFO_EMPTY_INT_ENA;
-    uart_intr.UART_RX_FifoFullIntrThresh = 10;
-    uart_intr.UART_RX_TimeOutIntrThresh = 2;
-    uart_intr.UART_TX_FifoEmptyIntrThresh = 20;
+    uart_intr.UART_RX_FifoFullIntrThresh = 63;
+    uart_intr.UART_RX_TimeOutIntrThresh = 0x8;
+    uart_intr.UART_TX_FifoEmptyIntrThresh = 0x10;
     UART_IntrConfig(UART0, &uart_intr);
 
     UART_SetPrintPort(UART0);

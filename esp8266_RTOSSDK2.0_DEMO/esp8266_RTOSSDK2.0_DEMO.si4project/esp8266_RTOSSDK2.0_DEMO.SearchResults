@@ -1,37 +1,10 @@
----- CE_HIGH Matches (6 in 3 files) ----
-nd6.h (G:\share\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv6\lwip) line 191 : #define ND6_RA_PREFERENCE_HIGH (0x08)
-RF_RxMode in RF.c (user) :     CE_HIGH;											// Set CE pin high 开始接收数据
-ucRF_TxData in RF.c (user) :     CE_HIGH;                                                                    		//rf entery tx mode start send data 
-ucRF_DumpRxData in RF.c (user) :     CE_HIGH;                                                                    		//继续开始接收
-RF.H (user) line 23 : #define   CE_HIGH   SDN=1
-RF.H (user) line 29 : //#define         CE_HIGH          GPIOB->ODR |= GPIO_Pin_1
----- CE_HIGH Search Errors Encountered (1) ----
-The following 1 files could not be processed:
-G:\share\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\esp8266_RTOSSDK2.0_DEMO\user\c_types.h : File could not be opened.
----- CSN_LOW Matches (6 in 2 files) ----
-RF_WriteReg in RF.c (user) :     CSN_LOW;
-ucRF_ReadReg in RF.c (user) :     CSN_LOW;
-RF_WriteBuf in RF.c (user) :     CSN_LOW;
-RF_ReadBuf in RF.c (user) :     CSN_LOW;                    		                               			
-RF.H (user) line 32 : #define   CSN_LOW   nSEL=0
-RF.H (user) line 42 : //#define         CSN_LOW          GPIOB->ODR &= (~GPIO_Pin_4)
----- CSN_LOW Search Errors Encountered (1) ----
-The following 1 files could not be processed:
-G:\share\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\esp8266_RTOSSDK2.0_DEMO\user\c_types.h : File could not be opened.
----- SPI_init Matches (3 in 1 files) ----
-RF.c (user) line 16 : //            SPI_init
-RF.c (user) line 19 : void SPI_init(void)
-RF_Init in RF.c (user) :     SPI_init();
----- SPI_init Search Errors Encountered (1) ----
-The following 1 files could not be processed:
-G:\share\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\esp8266_RTOSSDK2.0_DEMO\user\c_types.h : File could not be opened.
----- EVENT_STAMODE_DISCONNECTED Matches (2 in 2 files) ----
-esp_wifi.h (G:\share\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 263 :     EVENT_STAMODE_DISCONNECTED,         /**< ESP8266 station disconnected to AP */
-wifi_event_handler_cb in wifi_state_machine.c (user) :         case EVENT_STAMODE_DISCONNECTED:
----- EVENT_STAMODE_DISCONNECTED Search Errors Encountered (1) ----
-The following 1 files could not be processed:
-G:\share\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\esp8266_RTOSSDK2.0_DEMO\user\c_types.h : File could not be opened.
----- send EVENT_STAMODE_DISCONNECTED error Matches (0 in 0 files) ----
----- send EVENT_STAMODE_DISCONNECTED error Search Errors Encountered (1) ----
-The following 1 files could not be processed:
-G:\share\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\esp8266_RTOSSDK2.0_DEMO\user\c_types.h : File could not be opened.
+---- tcp_client_isconnect_flag Matches (4 in 1 files) ----
+mytcp.c (user) line 24 : uint8_t tcp_client_isconnect_flag;
+tcp_client_task in mytcp.c (user) : 				tcp_client_isconnect_flag=1;
+tcp_client_task in mytcp.c (user) : 				tcp_client_isconnect_flag=0;
+tcp_client_isconnect in mytcp.c (user) : 	return tcp_client_isconnect_flag;
+---- tcp_client_isconnect_flag Matches (4 in 1 files) ----
+mytcp.c (user) line 24 : uint8_t tcp_client_isconnect_flag;
+tcp_client_task in mytcp.c (user) : 				tcp_client_isconnect_flag=1;
+tcp_client_task in mytcp.c (user) : 				tcp_client_isconnect_flag=0;
+tcp_client_isconnect in mytcp.c (user) : 	return tcp_client_isconnect_flag;
