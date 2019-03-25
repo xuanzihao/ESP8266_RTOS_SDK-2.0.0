@@ -1,242 +1,162 @@
----- #include "rf.h" Matches (0 in 0 files) ----
----- #include "rf.h" Search Errors Encountered (239) ----
-The following 239 files could not be processed:
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\aes.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\aesni.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\airkiss.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\api.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\api_msg.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\arc4.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\arch.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\asn1.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\asn1write.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv4\lwip\autoip.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\base64.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\bignum.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\blowfish.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\bn_mul.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\camellia.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\arch\cc.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\ccm.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\certs.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\check_config.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\cipher.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\cipher_internal.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\json\cJSON.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\compat-1.3.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\config.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\config_esp.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\croutine.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\ctr_drbg.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\c_types.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\debug.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\debug.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\def.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\des.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\dhcp.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv6\lwip\dhcp6.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\dhcpserver.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\dhm.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\dns.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp8266\eagle_soc.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\ecdh.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\ecdsa.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\ecjpake.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\ecp.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\entropy.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\entropy_poll.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\err.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\error.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp8266\esp8266.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espconn\espconn.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\espconn.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espconn\espconn_buf.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espconn\espconn_tcp.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espconn\espconn_udp.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\espnow.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp_common.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp_libc.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp_misc.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp_softap.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp_spiffs.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp_ssc.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp_sta.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp_system.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp_timer.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp_wifi.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp_wps.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\netif\etharp.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv6\lwip\ethip6.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp8266\ets_sys.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\FreeRTOS.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\FreeRTOSConfig.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\gcm.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp8266\gpio_register.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\havege.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\hmac_drbg.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv4\lwip\icmp.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv6\lwip\icmp6.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\netif\if_llc.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv4\lwip\igmp.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv4\lwip\inet.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv6\lwip\inet6.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\inet_chksum.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\init.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\ip.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv4\lwip\ip4.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv4\lwip\ip4_addr.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv6\lwip\ip6.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv6\lwip\ip6_addr.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv6\lwip\ip6_frag.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\ip_addr.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv4\lwip\ip_frag.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\list.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwipopts.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\md.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\md2.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\md4.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\md5.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\md_internal.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\mem.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\memory_buffer_alloc.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\memp.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\memp_std.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv6\lwip\mld6.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\mpu_wrappers.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mqtt\MQTTClient.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mqtt\MQTTConnect.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mqtt\MQTTFormat.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mqtt\MQTTFreeRTOS.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mqtt\MQTTPacket.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mqtt\MQTTPublish.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mqtt\MQTTSubscribe.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mqtt\MQTTUnsubscribe.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\ipv6\lwip\nd6.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\net.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\netbuf.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\netdb.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\posix\netdb.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\netif.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\netifapi.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll_config.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll_conn.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll_conn_opts.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll_ctx.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll_decl.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll_handlers.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll_io.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll_listener.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll_log.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll_loop.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll_msg.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll_private.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll\nopoll_win32.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\oid.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\opt.h : File could not be opened.
-D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\esp8266_RTOSSDK2.0_MQTT_UART_DEMO\user\osapi.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\padlock.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\pbuf.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\pem.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\arch\perf.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp8266\pin_mux_register.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\pk.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\pkcs11.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\pkcs12.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\pkcs5.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\pk_internal.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\platform.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\portable.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\portmacro.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\netif\ppp_oe.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\projdefs.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\pwm.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\queue.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\queue.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\raw.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\ripemd160.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\rsa.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\semphr.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\sha1.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\sha256.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\sha512.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\sio.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\netif\slipif.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\smartconfig.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\snmp.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\snmp_asn1.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\snmp_msg.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\snmp_structs.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\apps\sntp.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\apps\sntp_opts.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\apps\sntp_time.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\posix\sys\socket.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\sockets.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\multi-threads\sockets_mt.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\spiffs\spiffs.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\spiffs\spiffs_config.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\spiffs\spiffs_nucleus.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\spi_flash.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp8266\spi_register.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\ssl.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\openssl\ssl.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\internal\ssl3.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\ssl\ssl_bigint.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\ssl\ssl_bigint_impl.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\ssl_cache.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\internal\ssl_cert.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\ssl_ciphersuites.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\internal\ssl_code.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\ssl\ssl_compat-1.0.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\ssl\ssl_config.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\ssl_cookie.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\ssl\ssl_crypto.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\ssl\ssl_crypto_misc.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\internal\ssl_dbg.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\ssl_internal.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\internal\ssl_lib.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\internal\ssl_methods.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\platform\ssl_opt.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\ssl\ssl_os_port.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\internal\ssl_pkey.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\ssl\ssl_platform.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\platform\ssl_pm.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\platform\ssl_port.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\ssl\ssl_ssl.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\internal\ssl_stack.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\ssl_ticket.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\ssl\ssl_tls1.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\internal\ssl_types.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\ssl\ssl_version.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\internal\ssl_x509.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\StackMacros.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mqtt\StackTrace.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\stats.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\sys.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\arch\sys_arch.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\task.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\tcp.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\tcpip.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\tcp_impl.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\threading.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\apps\time.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\timers.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\timers.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp8266\timer_register.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\timing.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\internal\tls1.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\esp8266\uart_register.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip\udp.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif\upgrade.h : File could not be opened.
-D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\esp8266_RTOSSDK2.0_MQTT_UART_DEMO\user\upgrade.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\version.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\netif\wlan_lwip_if.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\x509.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\x509_crl.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\x509_crt.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\x509_csr.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\openssl\internal\x509_vfy.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls\xtea.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\xtensa_context.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\xtensa_rtos.h : File could not be opened.
-G:\xuanzihao\Code\ESP8266_RTOS_SDK-2.0.0\include\freertos\xtensa_timer.h : File could not be opened.
+---- retryInterval Matches (0 in 0 files) ----
+---- keepAliveInterval Matches (13 in 7 files) ----
+sendPacket in MQTTClient.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) :         TimerCountdown(&c->last_sent, c->keepAliveInterval); // record the fact that we have successfully sent the packet
+readPacket in MQTTClient.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) :     if (c->keepAliveInterval > 0)
+readPacket in MQTTClient.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) :         TimerCountdown(&c->last_received, c->keepAliveInterval); // record the fact that we have successfully received a packet
+keepalive in MQTTClient.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) :     if (c->keepAliveInterval == 0)
+MQTTConnectWithResults in MQTTClient.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) :     c->keepAliveInterval = options->keepAliveInterval;
+MQTTConnectWithResults in MQTTClient.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) :     TimerCountdown(&c->last_received, c->keepAliveInterval);
+MQTTClient in MQTTClient.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\mqtt) :     unsigned int keepAliveInterval;
+{anonMQTTPacket_connectData} in MQTTConnect.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\mqtt) : 	unsigned short keepAliveInterval;
+MQTTSerialize_connect in MQTTConnectClient.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) : 	writeInt(&ptr, options->keepAliveInterval);
+MQTTDeserialize_connect in MQTTConnectServer.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) : 		data->keepAliveInterval = readInt(&curdata);
+MQTTStringFormat_connect in MQTTFormat.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) : 			(int)data->cleansession, data->keepAliveInterval);
+mqtt_task in mymqtt.c (user) : 			connectData.keepAliveInterval = MQTT_KEEPALIVEINTERVAL;
+---- keepalive Matches (20 in 7 files) ----
+espconn.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espconn) line 247 : #define   espconn_keepalive_disabled(espconn)  (((espconn)->pcommon.espconn_opt & ESPCONN_KEEPALIVE) != 0)
+espconn.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espconn) line 248 : #define   espconn_keepalive_enabled(espconn)  (((espconn)->pcommon.espconn_opt & ESPCONN_KEEPALIVE) == 0)
+espconn.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espconn) line 617 :  * FunctionName : espconn_set_keepalive
+espconn.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espconn) line 625 : extern sint8 espconn_set_keepalive(struct espconn* espconn, uint8 level, void* optarg);
+espconn.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espconn) line 628 :  * FunctionName : espconn_get_keepalive
+espconn.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espconn) line 635 : extern sint8 espconn_get_keepalive(struct espconn* espconn, uint8 level, void* optarg);
+espconn.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 580 : sint8 espconn_set_keepalive(struct espconn *espconn, uint8 level, void *optarg);
+espconn.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 594 : sint8 espconn_get_keepalive(struct espconn *espconn, uint8 level, void *optarg);
+espconn.h (user) line 404 :  * FunctionName : espconn_set_keepalive
+espconn.h (user) line 413 : sint8 espconn_set_keepalive(struct espconn *espconn, uint8 level, void* optarg);
+espconn.h (user) line 416 :  * FunctionName : espconn_get_keepalive
+espconn.h (user) line 424 : sint8 espconn_get_keepalive(struct espconn *espconn, uint8 level, void *optarg);
+espconn_tcp.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espconn) line 38 : #define  espconn_keepalive_enable(pcb)   ((pcb)->so_options |= SOF_KEEPALIVE)
+espconn_tcp.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espconn) line 39 : #define  espconn_keepalive_disable(pcb)   ((pcb)->so_options &= ~SOF_KEEPALIVE)
+MQTTClient.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) line 212 : int keepalive(MQTTClient* c)
+keepalive in MQTTClient.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) :             rc = FAILURE; /* PINGRESP not received in keepalive interval */
+cycle in MQTTClient.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) :     if (keepalive(c) != SUCCESS) {
+cycle in MQTTClient.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) :         //check only keepalive FAILURE status so that previous FAILURE status can be considered as FAULT
+opt.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip) line 1794 : /* Interval in seconds between keepalive echo requests, 0 to disable. */
+tcp_impl.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip) line 463 : void tcp_keepalive(struct tcp_pcb *pcb);
+---- MQTTRun Matches (2 in 1 files) ----
+MQTTClient.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) line 364 : void MQTTRun(void* parm)
+MQTTStartTask in MQTTClient.c (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\third_party\mqtt\library) : 	return ThreadStart(&client->thread, &MQTTRun, client);
+---- upgrade Matches (151 in 11 files) ----
+arch.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\lwip\lwip) line 49 : /** Temporary upgrade helper: define format string for u8_t as hex if not
+esp_common.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 46 :    *    - Upgrade APIs : Firmware upgrade (FOTA) APIs
+esp_system.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 423 : uint8 system_upgrade_userbin_check(void);
+esp_system.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 432 : void system_upgrade_reboot(void);
+esp_system.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 435 :   * @brief  Check the upgrade status flag.
+esp_system.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 443 : uint8 system_upgrade_flag_check();
+esp_system.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 446 :   * @brief     Set the upgrade status flag.
+esp_system.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 449 :   *            and call system_upgrade_reboot to reboot the system in order to run
+esp_system.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 459 : void system_upgrade_flag_set(uint8 flag);
+myota.c (user) line 19 : static os_timer_t upgrade_timer;
+myota.c (user) line 30 :  * FunctionName : upgrade_recycle
+myota.c (user) line 31 :  * Description  : recyle upgrade task, if OTA finish switch to run another bin
+myota.c (user) line 35 : static void hilink_upgrade_recycle(void)
+hilink_upgrade_recycle in myota.c (user) :     system_upgrade_deinit();
+hilink_upgrade_recycle in myota.c (user) :     os_timer_disarm(&upgrade_timer);
+hilink_upgrade_recycle in myota.c (user) :     printf("[hilink_upgrade_recycle] : system_upgrade_flag_check()=0x%d\n", system_upgrade_flag_check());
+hilink_upgrade_recycle in myota.c (user) :     if (system_upgrade_flag_check() == UPGRADE_FLAG_FINISH) {
+hilink_upgrade_recycle in myota.c (user) :     	printf("\r\n hilink_upgrade_recycle UPGRADE_FLAG_FINISH \r\n");
+hilink_upgrade_recycle in myota.c (user) :         system_upgrade_reboot();
+hilink_upgrade_recycle in myota.c (user) :         printf("\r\n system_upgrade_reboot \r\n");
+myota.c (user) line 71 :  * FunctionName : upgrade_download
+myota.c (user) line 77 : static int upgrade_download(char* pusrdata, unsigned short length)
+upgrade_download in myota.c (user) :         printf("upgrade file download start.\n");
+upgrade_download in myota.c (user) :                     if (false == system_upgrade(pusrdata, sumlength)) {
+upgrade_download in myota.c (user) :                         system_upgrade_flag_set(UPGRADE_FLAG_IDLE);
+upgrade_download in myota.c (user) :                     if (false == system_upgrade(ptr + 4, length)) {
+upgrade_download in myota.c (user) :                         system_upgrade_flag_set(UPGRADE_FLAG_IDLE);
+upgrade_download in myota.c (user) :                 system_upgrade_flag_set(UPGRADE_FLAG_IDLE);
+upgrade_download in myota.c (user) :             system_upgrade_flag_set(UPGRADE_FLAG_IDLE);
+upgrade_download in myota.c (user) :         if (false == system_upgrade(pusrdata, length)) {
+upgrade_download in myota.c (user) :             system_upgrade_flag_set(UPGRADE_FLAG_IDLE);
+upgrade_download in myota.c (user) :             printf("upgrade file download finished.\n");
+upgrade_download in myota.c (user) :             if (upgrade_crc_check(system_get_fw_start_sec(), sumlength) != true) {
+upgrade_download in myota.c (user) :                 printf("upgrade crc check failed !\n");
+upgrade_download in myota.c (user) :                 system_upgrade_flag_set(UPGRADE_FLAG_IDLE);
+upgrade_download in myota.c (user) :             system_upgrade_flag_set(UPGRADE_FLAG_FINISH);
+hilink_ota_start in myota.c (user) : 	system_upgrade_flag_set(UPGRADE_FLAG_START);
+hilink_ota_start in myota.c (user) : 	system_upgrade_init();
+hilink_ota_start in myota.c (user) : 	    system_upgrade_flag_set(UPGRADE_FLAG_IDLE);
+hilink_ota_start in myota.c (user) : 	while ((system_upgrade_flag_check() != UPGRADE_FLAG_FINISH) &&((recbytes = read(ota_socket, recv_buf, 1400)) > 0)) {
+hilink_ota_start in myota.c (user) : 		if (0 != upgrade_download(recv_buf, recbytes)) {
+hilink_ota_start in myota.c (user) : 	if (system_upgrade_flag_check() == UPGRADE_FLAG_FINISH) {
+hilink_ota_start in myota.c (user) : 	    hilink_upgrade_recycle();
+hilink_ota_start in myota.c (user) : 	    system_upgrade_flag_set(UPGRADE_FLAG_IDLE);
+hilink_ota_start in myota.c (user) : 	hilink_upgrade_recycle();
+ota_start in myota.c (user) : 	if (system_upgrade_userbin_check() == UPGRADE_FW_BIN1) //判断当前运行的bin文件是user1还是user2
+ota_start in myota.c (user) : 		os_timer_disarm(&upgrade_timer);
+ota_start in myota.c (user) : 		os_timer_setfn(&upgrade_timer, (os_timer_func_t*)hilink_upgrade_recycle, NULL);
+ota_start in myota.c (user) : 		os_timer_arm(&upgrade_timer, OTA_TIMEOUT, 0);
+myota.h (user) line 4 : #include "upgrade.h"
+mystorage.h (include) line 7 : #include "upgrade.h"
+_noPollHandshake in nopoll_private.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll) : 	nopoll_bool     upgrade_websocket;
+_noPollHandshake in nopoll_private.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\nopoll) : 	nopoll_bool     connection_upgrade;
+ota_crc32.c (user) line 139 : bool upgrade_crc_check(uint16 fw_bin_sec, unsigned int sumlength)
+ota_lib.c (user) line 26 : #include "upgrade.h"
+ota_lib.c (user) line 28 : struct upgrade_param {
+ota_lib.c (user) line 38 : LOCAL struct upgrade_param* upgrade;
+OUT_OF_RANGE in ota_lib.c (user) :         start_sec = (system_upgrade_userbin_check() == USER_BIN2) ? 1 : 129;
+OUT_OF_RANGE in ota_lib.c (user) :         start_sec = (system_upgrade_userbin_check() == USER_BIN2) ? 1 : 257;
+OUT_OF_RANGE in ota_lib.c (user) :         start_sec = (system_upgrade_userbin_check() == USER_BIN2) ? 1 : 65;
+ota_lib.c (user) line 68 :  * FunctionName : user_upgrade_internal
+ota_lib.c (user) line 73 : LOCAL bool system_upgrade_internal(struct upgrade_param* upgrade, uint8* data, uint32 len)
+system_upgrade_internal in ota_lib.c (user) :     /*got the sumlngth,erase all upgrade sector*/
+system_upgrade_internal in ota_lib.c (user) :         upgrade->fw_bin_sec_earse = upgrade->fw_bin_sec;
+system_upgrade_internal in ota_lib.c (user) :         secnm = ((upgrade->fw_bin_addr + len) >> 12) + (len & 0xfff ? 1 : 0);
+system_upgrade_internal in ota_lib.c (user) :         while (upgrade->fw_bin_sec_earse != secnm) {
+system_upgrade_internal in ota_lib.c (user) :             if (OUT_OF_RANGE(upgrade->fw_bin_sec_earse)) {
+system_upgrade_internal in ota_lib.c (user) :                 os_printf("fw_bin_sec_earse:%d, Out of range\n", upgrade->fw_bin_sec_earse);
+system_upgrade_internal in ota_lib.c (user) :                 spi_flash_erase_sector(upgrade->fw_bin_sec_earse);
+system_upgrade_internal in ota_lib.c (user) :                 upgrade->fw_bin_sec_earse++;
+system_upgrade_internal in ota_lib.c (user) :     upgrade->buffer = (uint8*)os_zalloc(len + upgrade->extra);
+system_upgrade_internal in ota_lib.c (user) :     memcpy(upgrade->buffer, upgrade->save, upgrade->extra);
+system_upgrade_internal in ota_lib.c (user) :     memcpy(upgrade->buffer + upgrade->extra, data, len);
+system_upgrade_internal in ota_lib.c (user) :     len += upgrade->extra;
+system_upgrade_internal in ota_lib.c (user) :     upgrade->extra = len & 0x03;
+system_upgrade_internal in ota_lib.c (user) :     len -= upgrade->extra;
+system_upgrade_internal in ota_lib.c (user) :     if (upgrade->extra <= 4) {
+system_upgrade_internal in ota_lib.c (user) :         memcpy(upgrade->save, upgrade->buffer + len, upgrade->extra);
+system_upgrade_internal in ota_lib.c (user) :         os_printf("ERR3:arr_overflow,%u,%d\n", __LINE__, upgrade->extra);
+system_upgrade_internal in ota_lib.c (user) :         if (upgrade->fw_bin_addr + len >= (upgrade->fw_bin_sec + upgrade->fw_bin_sec_num) * SPI_FLASH_SEC_SIZE) {
+system_upgrade_internal in ota_lib.c (user) :         if (spi_flash_write(upgrade->fw_bin_addr, (uint32*)upgrade->buffer, len) != SPI_FLASH_RESULT_OK) {
+system_upgrade_internal in ota_lib.c (user) :         upgrade->fw_bin_addr += len;
+system_upgrade_internal in ota_lib.c (user) :     os_free(upgrade->buffer);
+system_upgrade_internal in ota_lib.c (user) :     upgrade->buffer = NULL;
+system_get_fw_start_sec in ota_lib.c (user) :     if (upgrade != NULL) {
+system_get_fw_start_sec in ota_lib.c (user) :         return upgrade->fw_bin_sec;
+ota_lib.c (user) line 159 :  * FunctionName : user_upgrade
+ota_lib.c (user) line 164 : bool system_upgrade(uint8* data, uint32 len)
+system_upgrade in ota_lib.c (user) :     ret = system_upgrade_internal(upgrade, data, len);
+ota_lib.c (user) line 172 :  * FunctionName : system_upgrade_init
+ota_lib.c (user) line 177 : void system_upgrade_init(void)
+system_upgrade_init in ota_lib.c (user) :     if (upgrade == NULL) {
+system_upgrade_init in ota_lib.c (user) :         upgrade = (struct upgrade_param*)os_zalloc(sizeof(struct upgrade_param));
+system_upgrade_init in ota_lib.c (user) :         upgrade->fw_bin_sec_num = 123;
+system_upgrade_init in ota_lib.c (user) :         upgrade->fw_bin_sec_num = 251;
+system_upgrade_init in ota_lib.c (user) :         upgrade->fw_bin_sec_num = 59;
+system_upgrade_init in ota_lib.c (user) :     upgrade->fw_bin_sec = (system_upgrade_userbin_check() == USER_BIN1) ? user_bin2_start : user_bin1_start;
+system_upgrade_init in ota_lib.c (user) :     upgrade->fw_bin_addr = upgrade->fw_bin_sec * SPI_FLASH_SEC_SIZE;
+system_upgrade_init in ota_lib.c (user) :     upgrade->fw_bin_sec_earse = upgrade->fw_bin_sec;
+ota_lib.c (user) line 210 :  * FunctionName : system_upgrade_deinit
+ota_lib.c (user) line 215 : void system_upgrade_deinit(void)
+system_upgrade_deinit in ota_lib.c (user) :     if (upgrade != NULL) {
+system_upgrade_deinit in ota_lib.c (user) :         os_free(upgrade);
+system_upgrade_deinit in ota_lib.c (user) :         upgrade = NULL;
+ssl.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls) line 1821 :  *                 while, then cause failures when the server is upgraded to
+ssl.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls) line 1969 :  *                 with non-upgraded peers. Allowing legacy renegotiation
+ssl.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\mbedtls) line 1976 :  *                 in interoperability issues with non-upgraded peers
+upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 43 :   * @brief Firmware upgrade (FOTA) APIs
+upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 56 : #define UPGRADE_FLAG_START  0x01    /**< flag of upgrading firmware, start upgrade */
+upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 69 : typedef void (*upgrade_states_check_callback)(void *arg);
+upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 73 : struct upgrade_server_info {
+upgrade_server_info in upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) :     upgrade_states_check_callback check_cb; /**< callback of upgrading */
+upgrade_server_info in upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) :     uint8 upgrade_version[16];              /**< the new version of firmware */
+upgrade_server_info in upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) :     uint8 upgrade_flag;                     /**< true, upgrade succeed; false, upgrade fail */
+upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 91 : void system_upgrade_init();
+upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 100 : void system_upgrade_deinit();
+upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 110 : bool system_upgrade(uint8 *data, uint32 len);
+upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 115 :  * @brief  Start upgrade firmware through WiFi with SSL connection.
+upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 117 :  * @param  struct upgrade_server_info *server : the firmware upgrade server info
+upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 122 : bool system_upgrade_start_ssl(struct upgrade_server_info *server);
+upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 126 :  * @brief  Start upgrade firmware through WiFi with normal connection.
+upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 128 :  * @param  struct upgrade_server_info *server : the firmware upgrade server info
+upgrade.h (D:\svn_work\Code\ESP8266_RTOS_SDK-2.0.0\include\espressif) line 134 : bool system_upgrade_start(struct upgrade_server_info *server);
