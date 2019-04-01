@@ -456,7 +456,7 @@ void  CheckUartData(uint8_t * data,uint16_t datalenght)
     {
     	case mqtt_task_status_INIT:
     	{
-    	    strcpy(answer,"$mqtt_task_status_INIT$");
+    	    strcpy(answer,"$mqtt_task_status_INIT$\r\n");
 			for(i=0;i<strlen(answer);i++)
 			{
 				uart_tx_one_char(0,(uint8_t) *(pdata+i));
@@ -466,7 +466,7 @@ void  CheckUartData(uint8_t * data,uint16_t datalenght)
     	break;
     	case mqtt_task_status_WAITMARTLINK:
     	{
-    	    strcpy(answer,"$mqtt_task_status_WAITMARTLINK$");
+    	    strcpy(answer,"$mqtt_task_status_WAITMARTLINK$\r\n");
 			for(i=0;i<strlen(answer);i++)
 			{
 				uart_tx_one_char(0,(uint8_t) *(pdata+i));
@@ -475,7 +475,7 @@ void  CheckUartData(uint8_t * data,uint16_t datalenght)
     	break;
     	case mqtt_task_status_WAITWIFI:
     	{
-    		strcpy(answer,"$mqtt_task_status_WAITWIFI$");
+    		strcpy(answer,"$mqtt_task_status_WAITWIFI$\r\n");
 			for(i=0;i<strlen(answer);i++)
 			{
 				uart_tx_one_char(0,(uint8_t) *(pdata+i));
@@ -484,7 +484,7 @@ void  CheckUartData(uint8_t * data,uint16_t datalenght)
     	break;
     	case mqtt_task_status_WAITM2M://ÕýÔÚÁ¬ÔÆ¶Ë
     	{
-    		strcpy(answer,"$mqtt_task_status_WAITM2M$");
+    		strcpy(answer,"$mqtt_task_status_WAITM2M$\r\n");
 			for(i=0;i<strlen(answer);i++)
 			{
 				uart_tx_one_char(0,(uint8_t) *(pdata+i));

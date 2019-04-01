@@ -9,6 +9,10 @@ static uint8 phone_ip[4] = {0,0,0,0};//用来保存手机IP，在mDNS中给手机进行鉴别；
 
 fifo_t          mqtt_fifo;
 uint8_t         mqtt_fifo_send_buf[1024];
+uint8_t sta_mac[6];
+
+uint8_t mqtt_PUBLISH[50];
+uint8_t mqtt_SUBSCRIBE[50];
 
 
 
@@ -61,6 +65,15 @@ static void ICACHE_FLASH_ATTR smartconfig_done(sc_status status, void *pdata)
 static void messageArrived(MessageData* data)
 {
     printf("Message arrived: %s\n", data->message->payload);
+
+	if(strstr(data->message->payload,"version:"))
+	{
+		char *p=NULL;
+		p=strchr(data->message->payload,':');//找到冒号
+		
+		if((strcmp(DoorLockVersionValue.versionName,hardWareVersion)==0)&&(os_strcmp(DoorLockVersionValue.softwareVersion,SOFTWAREVERSION)>0))	
+	}
+    
 	uint16_t i;
 	uint8_t *pdata=data->message->payload;
 	for(i=0;i<data->message->payloadlen;i++)
@@ -95,6 +108,15 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 	MQTTClientInit(&client, &network, 30000, sendbuf, sizeof(sendbuf), readbuf, sizeof(readbuf));
 
 	char* address = MQTT_BROKER;
+
+	wifi_get_macaddr(STATION_IF,sta_mac);
+	printf("\r\n macaddr= %02x.%02x.%02x.%02x.%02x.%02x\r\n",sta_mac[0],sta_mac[1],sta_mac[2],sta_mac[3],sta_mac[4],sta_mac[5]);
+
+	memset(mqtt_PUBLISH,0,sizeof(mqtt_PUBLISH));
+	memset(mqtt_SUBSCRIBE,0,sizeof(mqtt_SUBSCRIBE));
+
+	sprintf(mqtt_PUBLISH,"device/dc:"MACSTR,MAC2STR(sta_mac));
+	sprintf(mqtt_SUBSCRIBE,"user/dc:"MACSTR,MAC2STR(sta_mac));
 
     if(storage_list.ssid[0]==0&&storage_list.passowrd[0]==0)//没ip
     {
@@ -188,12 +210,12 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 			}
 
 
-			if ((rc = MQTTSubscribe(&client,MQTT_SUBSCRIBE, QOS0, messageArrived)) != 0) {
+			if ((rc = MQTTSubscribe(&client,mqtt_SUBSCRIBE, QOS0, messageArrived)) != 0) {
 				printf("Return code from MQTT subscribe is %d\n", rc);
 				network.disconnect(&network);
 				continue;//重复等待
 			} else {
-				printf("MQTT subscribe to topic \"ESP8266/sample/pub\"\n");
+				printf("MQTT subscribe to topic %s \n",mqtt_SUBSCRIBE);
 			}
 
 			mqtt_task_status=mqtt_task_status_IDLE;
@@ -266,13 +288,13 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 								message.payload = data_buf;
 								message.payloadlen = len;
 								
-								if ((rc = MQTTPublish(&client, MQTT_PUBLISH, &message)) != 0) {
+								if ((rc = MQTTPublish(&client, mqtt_PUBLISH, &message)) != 0) {
 									printf("Return code from MQTT publish is %d\n", rc);
 									network.disconnect(&network);
 									mqtt_reconnect_flag=1;
 									
 								} else {
-									printf("\r\nMQTT publish topic %s\r\n",MQTT_PUBLISH);
+									printf("\r\nMQTT publish topic %s\r\n",mqtt_PUBLISH);
 								}	
 							}
 						}

@@ -12,5 +12,7 @@
 
 
 void ota_start();
+char ota_url[100];
+
 #endif
 

@@ -191,9 +191,6 @@ void user_init(void)
     set_on_station_connect(on_wifi_connect);
     set_on_station_disconnect(on_wifi_disconnect);
     init_esp_wifi();//STATION mode
-
-
-
 	mqtt_start();
     
     //stop_wifi_ap();

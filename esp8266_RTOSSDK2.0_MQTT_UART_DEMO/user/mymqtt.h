@@ -31,11 +31,17 @@
 #include <myfifo.h>
 #include <myuart.h>
 
+#define MAC2STR(a) (a)[0], (a)[1], (a)[2], (a)[3], (a)[4], (a)[5]
+#define MACSTR "%02x:%02x:%02x:%02x:%02x:%02x"
 
 
 
 #define MQTT_PUBLISH "ESP8266/PUB"
 #define MQTT_SUBSCRIBE "ESP8266/SUB"
+
+#define HARDWAREVERSION "TC_MQTT_8266_V1"
+#define SOFTWAREVERSION "00000000"
+
 
 
 

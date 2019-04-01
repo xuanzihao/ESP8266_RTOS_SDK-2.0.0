@@ -4,8 +4,10 @@
 //#define host_ota "119.75.217.109"
 /*********************************************/
 
+char ota_url[100];
 char ota_host_buf[100];
 char filename_buf[100];
+
 
 char* ota_host=(char *)&ota_host_buf;	
 char* filename=(char *)&filename_buf;
@@ -349,11 +351,14 @@ static void hilink_ota_start(void* param)//开始远程升级
 
 /*从URL中提取域名和端口、文件函数*/
 void  http_parse_request_url(char *URL,char *host,char *filename,int32_t *port){
-	char *PA=(char*)malloc(strlen(URL));
-	char *PB=(char*)malloc(strlen(URL));
+	uint8_t buff1[100];
+	uint8_t buff2[100];
+	char *PA=(char *)&buff1;
+	char *PB=(char *)&buff2;
 	memset(host,0,sizeof(host));//给host初始化
 	memset(filename,0,sizeof(filename));//给filename初始化
 	*port=0;
+	//printf("\r\n1\r\n");
 	if(!(*URL))return;//如果url为空就返回
 		PA=URL;
 	if(!strncmp(PA,"http://",strlen("http://"))){//判断协议名
@@ -363,7 +368,9 @@ void  http_parse_request_url(char *URL,char *host,char *filename,int32_t *port){
 		PA=URL+strlen("https://");
 		}
 	PB=strchr(PA,'/');//strchr字符查找?返回值是要查找的字符的位置
+	//printf("\r\n2\r\n");
 	if(PB){
+	//printf("\r\n3\r\n");
 		memcpy(host,PA,strlen(PA)-strlen(PB));
 		if(PB+1){
 			memcpy(filename,PB+1,strlen(PB-1));
@@ -371,21 +378,26 @@ void  http_parse_request_url(char *URL,char *host,char *filename,int32_t *port){
 		}
 		host[strlen(PA)-strlen(PB)]=0;
 	}else{
+	printf("\r\n4\r\n");
 		memcpy(host,PA,strlen(PA));
 		host[strlen(PA)]=0;
+	//	printf("\r\n5\r\n");
 	}
 	PA=strchr(host,':');
+	//printf("\r\n6\r\n");
 	if(PA){
 		//*port=atoi(PA+1);
 		*port=_EXFUN(atoi,(PA+1));
+	//	printf("\r\n7\r\n");
 		}
 		
 	else
 		*port=80;
-	free(PA);
-	PA=NULL;
-	free(PB);
-	PB=NULL;
+	//printf("\r\n8\r\n");
+//	free(PA);
+//	PA=NULL;
+//	free(PB);
+//	PB=NULL;
 }
 
 void ota_start()
