@@ -8,9 +8,9 @@ export SDK_PATH=~/esp_iot_sdk_freertos
 export BIN_PATH=~/esp8266_bin
 !
 
-export SDK_PATH=/mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0/
+export SDK_PATH=/mnt/hgfs/svn_work/Code/ESP8266_RTOS_SDK-2.0.0/
 
-export BIN_PATH=/mnt/hgfs/xuanzihao/Code/ESP8266_RTOS_SDK-2.0.0/esp8266_RTOSSDK2.0_DEMO
+export BIN_PATH=/mnt/hgfs/svn_work/Code/ESP8266_RTOS_SDK-2.0.0/esp8266_RTOSSDK2.0_DEMO
 
 echo "gen_misc.sh version 20150911"
 echo ""

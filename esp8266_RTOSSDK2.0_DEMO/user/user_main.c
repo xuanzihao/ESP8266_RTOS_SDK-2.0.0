@@ -377,7 +377,6 @@ void user_init(void)
     set_on_station_disconnect(on_wifi_disconnect);
     init_esp_wifi();//
     //stop_wifi_ap();
-
 	tcp_client_start();
 //	xTaskCreate(rf_task, "rf_task", 4096, NULL, 6, NULL);
 }
