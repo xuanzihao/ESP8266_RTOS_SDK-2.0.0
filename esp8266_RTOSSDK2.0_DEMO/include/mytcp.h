@@ -34,6 +34,8 @@ enum
 
 	tcp_client_state_SENDDATA,
 };
+int ICACHE_FLASH_ATTR new_tcp_send(int tcp_fd, const unsigned char* buf, unsigned short len);
+
 
 
 #endif

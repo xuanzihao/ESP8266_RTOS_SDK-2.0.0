@@ -101,4 +101,4 @@
  hal_key.h gpio.h \
  /mnt/hgfs/svn_work/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/espconn.h \
  /mnt/hgfs/svn_work/Code/ESP8266_RTOS_SDK-2.0.0//include/espressif/airkiss.h \
- RF.h
+ RF.h mywebserver.h

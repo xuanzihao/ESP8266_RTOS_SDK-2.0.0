@@ -37,6 +37,9 @@
 
 #include "RF.h"
 
+#include "mywebserver.h"
+
+
 
 
 
@@ -377,6 +380,10 @@ void user_init(void)
     set_on_station_disconnect(on_wifi_disconnect);
     init_esp_wifi();//
     //stop_wifi_ap();
-	tcp_client_start();
+	//tcp_client_start();
+
+	softAP_init();
+	vTaskDelay(1000/portTICK_RATE_MS);
+	web_server_start();
 //	xTaskCreate(rf_task, "rf_task", 4096, NULL, 6, NULL);
 }
