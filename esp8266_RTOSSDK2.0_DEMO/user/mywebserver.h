@@ -24,6 +24,7 @@
 
 #ifndef __MYSEBSERVER_H__
 #define __MYSEBSERVER_H__
+#include "esp_common.h"
 
 #define SERVER_PORT 80
 #define SERVER_SSL_PORT 443
@@ -64,13 +65,36 @@ typedef struct _rst_parm {
     struct espconn *pespconn;
 } rst_parm;
 
+struct apInfo
+{
+	uint8_t ssid[32];
+	uint8_t channel;
+	char rssi;
+	AUTH_MODE authmode;
+	CIPHER_TYPE pairwise_cipher;
+};
+
+struct apInfoFormat
+{
+	uint8_t ssid[32];
+	uint8_t channel;
+	char rssi;
+	char authmode[20];
+	char pairwise_cipher[20];
+};
+
+
+
+void wifi_scand_start();
+
+
 
 #define WEB_INDEX "<!DOCTYPE html>\
 <html>\
     <head>\
-        <meta charset=\"utf-8\" content=\"width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\" name=\"viewport\"/>\
+        <meta charset=\"UTF-8\" content=\"width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\" name=\"viewport\"/>\
         <title>\
-            XZH的Web配网\
+            XZH鐨刉EB閰嶇綉\
         </title>\
     </head>\
     <body>\
@@ -88,7 +112,7 @@ typedef struct _rst_parm {
             </p>\
             <a href=\"WebConfig.html\" text-decoration=\"none\">\
                 <button formtarget=\"_self\" style=\"display:block;margin:0 auto\">\
-                    开始配网\
+                    寮�濮嬮厤缃慭
                 </button>\
             </a>\
         </div>\
@@ -98,9 +122,9 @@ typedef struct _rst_parm {
 #define WEB_CONFIG "<!DOCTYPE html>\
 <html>\
     <head>\
-        <meta charset=\"utf-8\" content=\"width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\" name=\"viewport\"/>\
+        <meta charset=\"UTF-8\" content=\"width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\" name=\"viewport\"/>\
         <title>\
-            XZH的Web配网\
+            XZH鐨刉EB閰嶇綉\
         </title>\
     </head>\
     <body>\
@@ -117,31 +141,77 @@ typedef struct _rst_parm {
             <table align=\"center\" border=\"0\" cellspacing=\"10\">\
                 <tr>\
                     <td>\
-                        Wi-Fi名称:\
-                        <input name=\"SSID\" placeholder=\"在这里输入Wi-Fi名称\" type=\"text\"/>\
+                        Wi-Fi鍚嶇О:\
+                        <input name=\"SSID\" placeholder=\"鍦ㄨ繖閲岃緭鍏i-Fi鍚嶇О\" type=\"text\"/>\
                     </td>\
                 </tr>\
                 <tr>\
                     <td>\
-                        Wi-Fi密码:\
-                        <input name=\"PASSWORD\" placeholder=\"在这里输入Wi-Fi密码\" type=\"password\"/>\
+                         Wi-Fi瀵嗙爜:\
+                        <input name=\"PASSWORD\" placeholder=\"鍦ㄨ繖閲岃緭鍏i-Fi瀵嗙爜\" type=\"password\"/>\
                     </td>\
                 </tr>\
             </table>\
             <button style=\"display:block;margin:0 auto\" type=\"submit\" value=\"Submit\">\
-                确认提交\
+                纭鎻愪氦\
             </button>\
         </form>\
     </body>\
 </html>\
 "
 
+#define WEB_CONFIG_HEAD "<!DOCTYPE html>\
+<html>\
+    <head>\
+        <meta charset=\"UTF-8\" content=\"width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\" name=\"viewport\"/>\
+        <title>\
+            XZH鐨刉EB閰嶇綉\
+        </title>\
+    </head>\
+    <body>\
+        <div align=\"center\">\
+            <font>\
+                Code By XZH\
+            </font>\
+            <br/>\
+            <font>\
+                E-mail: 530482366@qq.com\
+            </font>\
+        </div>\
+        <form action=\"WiFiConfig.html\" enctype=\"application/x-www-form-urlencoded\" method=\"post\">\
+            <table align=\"center\" border=\"0\" cellspacing=\"10\">\
+                <tr>\
+                    <td>\
+                        Wi-Fi鍚嶇О:\
+                        <input name=\"SSID\" placeholder=\"鍦ㄨ繖閲岃緭鍏i-Fi鍚嶇О\" type=\"text\"/>\
+                    </td>\
+                </tr>\
+                <tr>\
+                    <td>\
+                         Wi-Fi瀵嗙爜:\
+                        <input name=\"PASSWORD\" placeholder=\"鍦ㄨ繖閲岃緭鍏i-Fi瀵嗙爜\" type=\"password\"/>\
+                    </td>\
+                </tr>\
+            </table>\
+            <button style=\"display:block;margin:0 auto\" type=\"submit\" value=\"Submit\">\
+                纭鎻愪氦\
+            </button>\
+        </form>\
+"
+
+#define WEB_CONFIG_TAIL "\
+    </body>\
+</html>\
+"
+
+
+
 #define WEB_WIFI_CONFIG "<!DOCTYPE html>\
 <html>\
     <head>\
-        <meta charset=\"utf-8\" content=\"width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\" name=\"viewport\"/>\
+        <meta charset=\"UTF-8\" content=\"width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\" name=\"viewport\"/>\
         <title>\
-            XZH的Web配网\
+            XZH鐨刉EB閰嶇綉\
         </title>\
     </head>\
     <body>\
@@ -156,18 +226,18 @@ typedef struct _rst_parm {
             <br/>\
             <br/>\
             <font>\
-                正在连接Wi-Fi，LED灯闪烁三次后连接完成！\
+                 姝ｅ湪杩炴帴Wi-Fi锛孡ED鐏棯鐑佷笁娆″悗杩炴帴瀹屾垚锛乗
                 <br/>\
-                LED灯熄灭表示连接失败请重新输入！\
+                LED鐔勭伃琛ㄧず杩炴帴澶辫触璇烽噸鏂拌緭鍏ワ紒\
                 <br/>\
                 <a href=\"WebConfig.html\" text-decoration=\"none\">\
                     <button formtarget=\"_self\" style=\"display:block;margin:0 auto\">\
-                        重新配网\
+                        閲嶆柊閰嶇綉\
                     </button>\
                 </a>\
                 <br/>\
                 <a href=\"/\">\
-                    返回首页\
+                    杩斿洖棣栭〉\
                 </a>\
             </font>\
         </div>\

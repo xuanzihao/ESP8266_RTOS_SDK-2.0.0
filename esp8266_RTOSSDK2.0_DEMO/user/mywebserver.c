@@ -22,32 +22,162 @@ static void data_send(void *arg, bool responseOK, char *psend);
 static bool parse_url(char *precv, URL_Frame *purl_frame);
 
 
+/////////////////////////æ‰«æAP/////////////////////////////
+
+//bssåˆ—è¡¨
+bool scand_done_flag=false;
+struct bss_info *bss_link;
+struct apInfo all_bss_link[30];//åº”è¯¥ä¸ä¼šè¶…30ä¸ªå§ã€‚ã€‚ã€‚
+struct apInfoFormat all_bss_link_format[30];
+u8 bss_link_Cont=0;
+//
+void ICACHE_FLASH_ATTR scan_done(void *arg, STATUS status) {
+if (status == OK)
+{
+	uint8 ssid[33];
+	char temp[128];
+	struct station_config stationConf;
+
+	bss_link_Cont=0;
+
+	//struct bss_info *bss_link = (struct bss_info *)arg;
+	bss_link= (struct bss_info *)arg;
+	bss_link = bss_link->next.stqe_next;//ignore first
+
+	//if(bss_link->next)
+	{
+	//	os_printf("%s"bss_link->ssid);
+	//	bss_link=bss_link->next;
+	}
+	while (bss_link != NULL)
+	{
+		memset(ssid, 0, 33);
+		if (strlen(bss_link->ssid) <= 32)
+		{
+			memcpy(ssid, bss_link->ssid, strlen(bss_link->ssid));
+		}
+		else
+		{
+			memcpy(ssid, bss_link->ssid, 32);
+		}
+		sprintf(temp,"+CWLAP:(è®¤è¯æ–¹å¼ %d,\"ssid %s\",rssi %d,\""MACSTR"\",ä¿¡é“ %d,åŠ å¯†ç»„ %d,åŠ å¯† %d)\r\n",
+		bss_link->authmode, ssid, bss_link->rssi,
+		MAC2STR(bss_link->bssid),bss_link->channel,bss_link->group_cipher,bss_link->pairwise_cipher);
+		os_printf("%s",temp);
+
+		memcpy(all_bss_link[bss_link_Cont].ssid,ssid,33);
+		memcpy(all_bss_link_format[bss_link_Cont].ssid,ssid,33);
+		all_bss_link[bss_link_Cont].channel=bss_link->channel;
+		all_bss_link[bss_link_Cont].rssi=bss_link->rssi;
+		all_bss_link[bss_link_Cont].authmode=bss_link->authmode;
+		all_bss_link[bss_link_Cont].pairwise_cipher=bss_link->pairwise_cipher;
+
+		all_bss_link_format[bss_link_Cont].channel=bss_link->channel;
+		all_bss_link_format[bss_link_Cont].rssi=bss_link->rssi;
+		//æ ¼å¼åŒ–ä¸€ä¸‹è®¤è¯æ–¹å¼
+		switch(all_bss_link[bss_link_Cont].authmode)
+		{
+			case AUTH_OPEN:
+			strcpy(all_bss_link_format[bss_link_Cont].authmode,"OPEN");
+			break;
+			case AUTH_WEP:
+			strcpy(all_bss_link_format[bss_link_Cont].authmode,"WEP");
+			break;
+			case AUTH_WPA_PSK:
+			strcpy(all_bss_link_format[bss_link_Cont].authmode,"WPA-PSK");
+			break;
+			case AUTH_WPA2_PSK:
+			strcpy(all_bss_link_format[bss_link_Cont].authmode,"WPA-PSK/WPA2-PSK");
+			break;
+			case AUTH_WPA_WPA2_PSK:
+			strcpy(all_bss_link_format[bss_link_Cont].authmode,"SHARED");
+			break;
+			default:
+			strcpy(all_bss_link_format[bss_link_Cont].authmode,"AUTH_UNKNOWN");
+			break;
+		}
+		//æ ¼å¼åŒ–ä¸€ä¸‹åŠ å¯†æ–¹å¼
+		switch(all_bss_link[bss_link_Cont].pairwise_cipher)
+		{
+			case CIPHER_NONE:
+			strcpy(all_bss_link_format[bss_link_Cont].pairwise_cipher,"NONE");
+			break;
+			case CIPHER_WEP40:
+			strcpy(all_bss_link_format[bss_link_Cont].pairwise_cipher,"WEP40");
+			break;
+			case CIPHER_WEP104:
+			strcpy(all_bss_link_format[bss_link_Cont].pairwise_cipher,"WEP104");
+			break;
+			case CIPHER_TKIP:
+			strcpy(all_bss_link_format[bss_link_Cont].pairwise_cipher,"TKIP");
+			break;
+			case CIPHER_CCMP:
+			strcpy(all_bss_link_format[bss_link_Cont].pairwise_cipher,"AES");
+			break;
+			case CIPHER_TKIP_CCMP:
+			strcpy(all_bss_link_format[bss_link_Cont].pairwise_cipher,"TKIP_CCMP");
+			break;
+			case CIPHER_UNKNOWN:
+			break;
+			default:
+			strcpy(all_bss_link_format[bss_link_Cont].pairwise_cipher,"CIPHER_UNKNOWN");
+			break;
+		}
+		bss_link_Cont++;
+		bss_link = bss_link->next.stqe_next;
+	}
+	//æ‰«æå®Œæˆä»¥åå°±å¼€å§‹è¿æ¥WiFiäº†
+	}
+	else
+	{
+		//os_sprintf(temp,"err, scan status %d\r\n", status);
+		//uart0_sendStr(temp);
+		os_printf("%s","Error");
+	}
+#if 0
+	os_timer_disarm(&sendApTimer);//å‘é€Ap
+	os_timer_setfn(&sendApTimer,(ETSTimerFunc *)sendApTimerCb,NULL); 
+	os_timer_arm(&sendApTimer,200,0);//
+	extern u8 sendLinkCon;
+	sendLinkCon=0; 
+#endif
+	scand_done_flag=true;
+}
+
+void wifi_scand_start()
+{
+	scand_done_flag=false;
+	wifi_station_scan(NULL, scan_done);
+}
+
+
+
 /**********************
 
 /**********************
  *   STATIC FUNCTIONS
  **********************/
 /*
- * softAPÄ£Ê½³õÊ¼»¯´úÂë
+ * softAPæ¨¡å¼åˆå§‹åŒ–ä»£ç 
  */
 void ICACHE_FLASH_ATTR softAP_init(void)
 {
     struct softap_config soft_ap_Config;
 
-    wifi_set_opmode_current(SOFTAP_MODE);//ÉèÖÃÎªAPÄ£Ê½£¬²»±£´æµ½flash
-//  wifi_set_opmode(SOFTAP_MODE);//ÉèÖÃÎªAPÄ£Ê½£¬²¢±£´æµ½flash
+    wifi_set_opmode_current(STATIONAP_MODE);//è®¾ç½®ä¸ºAPæ¨¡å¼ï¼Œä¸ä¿å­˜åˆ°flash
+//  wifi_set_opmode(SOFTAP_MODE);//è®¾ç½®ä¸ºAPæ¨¡å¼ï¼Œå¹¶ä¿å­˜åˆ°flash
 
-    soft_ap_Config.ssid_len = 14;//ÈÈµãÃû³Æ³¤¶È£¬ÓëÄãÊµ¼ÊµÄÃû³Æ³¤¶ÈÒ»ÖÂ¾ÍºÃ
-    strcpy(soft_ap_Config.ssid,"XZHCMKG");//Êµ¼ÊÈÈµãÃû³ÆÉèÖÃ£¬¿ÉÒÔ¸ù¾İÄãµÄĞèÒªÀ´
-    strcpy(soft_ap_Config.password,"12345678");//ÈÈµãÃÜÂëÉèÖÃ
-    soft_ap_Config.authmode = AUTH_WPA2_PSK;//ÉèÖÃÈ¨ÏŞÄ£Ê½£¬AUTH_WPA2_PSKÕâÊÇÒ»ÖÖ¼ÓÃÜËã·¨
-    soft_ap_Config.beacon_interval = 100;//ĞÅ±ê¼ä¸ô£¬Ä¬ÈÏÎª100
-    soft_ap_Config.channel = 1;//ĞÅµÀ£¬¹²Ö§³Ö1~13¸öĞÅµÀ
-    soft_ap_Config.max_connection = 2;//×î´óÁ¬½ÓÊıÁ¿£¬×î´óÖ§³ÖËÄ¸ö£¬Ä¬ÈÏËÄ¸ö
-    soft_ap_Config.ssid_hidden = 0;//Òş²ØSSID£¬0£º²»Òş²Ø  1£ºÒş²Ø
+    soft_ap_Config.ssid_len = 14;//çƒ­ç‚¹åç§°é•¿åº¦ï¼Œä¸ä½ å®é™…çš„åç§°é•¿åº¦ä¸€è‡´å°±å¥½
+    strcpy(soft_ap_Config.ssid,"XZHCMKG");//å®é™…çƒ­ç‚¹åç§°è®¾ç½®ï¼Œå¯ä»¥æ ¹æ®ä½ çš„éœ€è¦æ¥
+    strcpy(soft_ap_Config.password,"12345678");//çƒ­ç‚¹å¯†ç è®¾ç½®
+    soft_ap_Config.authmode = AUTH_WPA2_PSK;//è®¾ç½®æƒé™æ¨¡å¼ï¼ŒAUTH_WPA2_PSKè¿™æ˜¯ä¸€ç§åŠ å¯†ç®—æ³•
+    soft_ap_Config.beacon_interval = 100;//ä¿¡æ ‡é—´éš”ï¼Œé»˜è®¤ä¸º100
+    soft_ap_Config.channel = 1;//ä¿¡é“ï¼Œå…±æ”¯æŒ1~13ä¸ªä¿¡é“
+    soft_ap_Config.max_connection = 2;//æœ€å¤§è¿æ¥æ•°é‡ï¼Œæœ€å¤§æ”¯æŒå››ä¸ªï¼Œé»˜è®¤å››ä¸ª
+    soft_ap_Config.ssid_hidden = 0;//éšè—SSIDï¼Œ0ï¼šä¸éšè—  1ï¼šéšè—
 
-    wifi_softap_set_config_current(&soft_ap_Config);//ÉèÖÃ Wi-Fi SoftAP ½Ó¿ÚÅäÖÃ£¬²»±£´æµ½ Flash
-//  wifi_softap_set_config(&soft_ap_Config);//ÉèÖÃ Wi-Fi SoftAP ½Ó¿ÚÅäÖÃ£¬±£´æµ½ Flash
+    wifi_softap_set_config_current(&soft_ap_Config);//è®¾ç½® Wi-Fi SoftAP æ¥å£é…ç½®ï¼Œä¸ä¿å­˜åˆ° Flash
+//  wifi_softap_set_config(&soft_ap_Config);//è®¾ç½® Wi-Fi SoftAP æ¥å£é…ç½®ï¼Œä¿å­˜åˆ° Flash
 
     os_printf("\r\nSSID: %s\r\nPWD: %s\r\n",soft_ap_Config.ssid,soft_ap_Config.password);
 
@@ -111,11 +241,14 @@ static void ICACHE_FLASH_ATTR webserver_recv(void *arg, char *pusrdata, unsigned
                         goto _temp_exit;
                     }
                     #else
+                    
 					memset(html,0,INDEX_SIZE);
 					strcpy(html,(char *)WEB_INDEX);
                     
                     #endif
                     html[INDEX_SIZE] = 0;   // put 0 to the end
+
+                    
                     data_send(arg, true, html);
                     os_free(html);
                     html = NULL;
@@ -137,8 +270,30 @@ static void ICACHE_FLASH_ATTR webserver_recv(void *arg, char *pusrdata, unsigned
                         goto _temp_exit;
                     }
                     #else 
+
+                    
+                    wifi_scand_start();
+                    while(scand_done_flag==false)vTaskDelay(100);
 					memset(html,0,INDEX_SIZE);
-					strcpy(html,WEB_CONFIG);
+					//strcpy(html,WEB_CONFIG);
+					strcat(html,WEB_CONFIG_HEAD);
+
+					uint8_t i;
+					strcat(html,"<br/>å½“å‰ç¯å¢ƒå­˜åœ¨çš„è·¯ç”±å™¨åˆ—è¡¨ï¼š<br/>");
+					strcat(html,"<table border=\"1\">");
+					strcat(html,"<tr><td>è·¯ç”±å™¨ssid</td><td>ä¿¡é“</td><td>ä¿¡å·å¼ºåº¦</td><td>è®¤è¯æ–¹å¼</td><td>åŠ å¯†æ–¹å¼</td></tr>");
+					uint8_t bss_temp[300]={};
+					for(i=0;i<bss_link_Cont-1;i++)
+					{
+						sprintf(bss_temp,"<tr><td>%s</td><td>%d</td><td>%d</td><td>%s</td><td>%s</td></tr>",
+						all_bss_link_format[i].ssid,all_bss_link_format[i].channel,all_bss_link_format[i].rssi,
+						all_bss_link_format[i].authmode,all_bss_link_format[i].pairwise_cipher);	
+						strcat(html,bss_temp);	
+					}
+					
+					strcat(html,"</table>");
+
+					strcat(html,WEB_CONFIG_TAIL);
                     #endif
 
              
@@ -171,6 +326,8 @@ static void ICACHE_FLASH_ATTR webserver_recv(void *arg, char *pusrdata, unsigned
 				memset(html,0,INDEX_SIZE);
 				strcpy(html,WEB_WIFI_CONFIG);
                 #endif
+
+                
                 html[WIFIDONE_SIZE] = 0;   // put 0 to the end
                 data_send(arg, true, html);
                 os_free(html);
@@ -207,6 +364,7 @@ webconfig_get_wifi_ssid_pwd(char* urlparam)
     memcpy(pass, q + 9, strlen(urlparam) - (q - urlparam) - 9);
     os_printf("ssid[%s]pass[%s]\r\n", ssid, pass);
 
+	/*
     wifi_set_opmode(STATION_MODE);
     struct station_config stConf;
     stConf.bssid_set = 0;
@@ -217,8 +375,9 @@ webconfig_get_wifi_ssid_pwd(char* urlparam)
     memcpy(&stConf.password, pass, strlen(pass));
 
     wifi_station_set_config(&stConf);
-    //ÖØÆô
+    //é‡å¯
     system_restart();
+    */
 }
 
 /******************************************************************************
@@ -372,6 +531,7 @@ static void web_server_task(void *pvParameters)
         }
         printf("Socket created");
 
+		#if 0
         int reuse;
 		if(setsockopt(listen_sock, SOL_SOCKET, SO_REUSEADDR,
 						(const char *) &reuse, sizeof( reuse ) ) != 0 )
@@ -380,6 +540,7 @@ static void web_server_task(void *pvParameters)
 			printf("set SO_REUSEADDR failed\n");
 			break;
 		}
+		#endif
 
 
         int err = bind(listen_sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
@@ -402,6 +563,10 @@ static void web_server_task(void *pvParameters)
         struct sockaddr_in sourceAddr;
 #endif
         uint addrLen = sizeof(sourceAddr);
+        
+		while(1)
+		{
+        
         int sock = accept(listen_sock, (struct sockaddr *)&sourceAddr, &addrLen);
         if (sock < 0) {
             printf("Unable to accept connection: errno %d", errno);
@@ -409,7 +574,8 @@ static void web_server_task(void *pvParameters)
         }
         printf("Socket accepted");
 
-        while (1) {
+        while (1) 
+        {
             int len = recv(sock, rx_buffer, sizeof(rx_buffer) - 1, 0);
             // Error occured during receiving
             if (len < 0) {
@@ -448,13 +614,23 @@ static void web_server_task(void *pvParameters)
 
                 webserver_recv(&sock,rx_buffer,strlen(rx_buffer));
             }
-        }
 
+            
+        }
         if (sock != -1) {
             printf("Shutting down socket and restarting...");
             shutdown(sock, 0);
             close(sock);
         }
+
+		}
+        #if 0
+        if (sock != -1) {
+            printf("Shutting down socket and restarting...");
+            shutdown(sock, 0);
+            close(sock);
+        }
+        #endif
     }
     vTaskDelete(NULL);
 }
@@ -463,5 +639,9 @@ void web_server_start()
 {
 	xTaskCreate(web_server_task, "web_server_task", 6000, NULL, 5, NULL);
 }
+
+
+
+
 
 
