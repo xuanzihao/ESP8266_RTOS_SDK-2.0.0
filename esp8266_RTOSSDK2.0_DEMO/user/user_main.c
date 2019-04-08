@@ -38,6 +38,8 @@
 #include "RF.h"
 
 #include "mywebserver.h"
+#include "mytcpserver.h"
+
 
 
 
@@ -47,7 +49,7 @@
 
 static os_timer_t timer;
 
-LOCAL key_typedef_t * singleKey[GPIO_KEY_NUM];								///< ¶¨Òåµ¥¸ö°´¼ü³ÉÔ±Êý×éÖ¸Õë
+LOCAL key_typedef_t * singleKey[GPIO_KEY_NUM];								///< å®šä¹‰å•ä¸ªæŒ‰é”®æˆå‘˜æ•°ç»„æŒ‡é’ˆ
 LOCAL keys_typedef_t keys;
 
 LOCAL key0_status=0;
@@ -201,8 +203,8 @@ void key1LongPress()
 	memset(&storage_list,0,sizeof(storage_list));
 	system_param_save_with_protect(XZH_PARAM_START_SEC,(void *)&storage_list,sizeof(storage_list));
 	printf("\r\n system_param_save_with_protect storage_list ok sec=%d len=%d \r\n",XZH_PARAM_START_SEC,sizeof(storage_list));
-	system_restore();		//»Ö¸´³ö³§ÉèÖÃ£¬Çå³ý±£´æµÄWiFiÐÅÏ¢
-	system_restart();		//ÏµÍ³ÖØÆô
+	system_restore();		//æ¢å¤å‡ºåŽ‚è®¾ç½®ï¼Œæ¸…é™¤ä¿å­˜çš„WiFiä¿¡æ¯
+	system_restart();		//ç³»ç»Ÿé‡å¯
 
 	
 }
@@ -235,7 +237,7 @@ void key2ShortPress()
 
 /*******************************************************************************
 * Function Name  : keyInit
-* Description    : °´¼ü³õÊ¼»¯º¯Êý
+* Description    : æŒ‰é”®åˆå§‹åŒ–å‡½æ•°
 * Input          : none
 * Output         : None
 * Return         : none
@@ -308,7 +310,7 @@ LOCAL void ICACHE_FLASH_ATTR rf_task(void *pvParameters)
 		{	  
 			RF_ClearFIFO();
 			RF_ClearStatus ();  
-			os_printf("\r\n ·¢ËÍÍê³É \r\n");
+			os_printf("\r\n å‘é€å®Œæˆ \r\n");
 		} //PC_CR2=0x020; 	
 		os_printf("\r\n ucRF_GetStatus:%d \r\n",ucRF_GetStatus());
 
@@ -382,8 +384,10 @@ void user_init(void)
     //stop_wifi_ap();
 	//tcp_client_start();
 
-	softAP_init();
-	vTaskDelay(1000/portTICK_RATE_MS);
-	web_server_start();
+	//softAP_init();
+	soft_ap_init();
+	//vTaskDelay(1000/portTICK_RATE_MS);
+	TcpLocalServer();
+	//web_server_start();
 //	xTaskCreate(rf_task, "rf_task", 4096, NULL, 6, NULL);
 }
