@@ -196,6 +196,10 @@ void ICACHE_FLASH_ATTR softAP_init(void)
 
 
 
+
+
+
+
 /******************************************************************************
  * FunctionName : parse_url
  * Description  : parse the received data from the server
