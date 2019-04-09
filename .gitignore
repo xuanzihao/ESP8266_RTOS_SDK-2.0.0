@@ -3,3 +3,6 @@
 /esp8266_RTOSSDK2.0_DEMO/esp8266_RTOSSDK2.0_DEMO.si4project
 
 *.bin
+*.S
+*.dump
+*.bin
