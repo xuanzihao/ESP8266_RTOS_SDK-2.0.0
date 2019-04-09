@@ -41,7 +41,7 @@
 void soft_ap_init(void);
 
 #define DBG_PRINT(fmt,...)	do{\
-	    os_printf("[Dbg]");\
+	    os_printf("[XzhDbg]");\
 	    os_printf(fmt,##__VA_ARGS__);\
 	}while(0)
 
