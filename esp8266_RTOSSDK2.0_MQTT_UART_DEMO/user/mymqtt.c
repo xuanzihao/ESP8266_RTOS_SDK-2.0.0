@@ -4,8 +4,8 @@ static uint32_t mqtt_task_cont=0;
 static uint8_t mqtt_task_status=0;
 xTaskHandle  mqtt_task_handle=NULL;
 
-static struct station_config s_staconf;//Â·ÓÉÆ÷ĞÅÏ¢½á¹¹Ìå
-static uint8 phone_ip[4] = {0,0,0,0};//ÓÃÀ´±£´æÊÖ»úIP£¬ÔÚmDNSÖĞ¸øÊÖ»ú½øĞĞ¼ø±ğ£»
+static struct station_config s_staconf;//è·¯ç”±å™¨ä¿¡æ¯ç»“æ„ä½“
+static uint8 phone_ip[4] = {0,0,0,0};//ç”¨æ¥ä¿å­˜æ‰‹æœºIPï¼Œåœ¨mDNSä¸­ç»™æ‰‹æœºè¿›è¡Œé‰´åˆ«ï¼›
 
 fifo_t          mqtt_fifo;
 uint8_t         mqtt_fifo_send_buf[1024];
@@ -37,7 +37,7 @@ static void ICACHE_FLASH_ATTR smartconfig_done(sc_status status, void *pdata)
             break;
         case SC_STATUS_LINK:
 		os_printf("\r\nSC_STATUS_LINK\n");
-            struct station_config *sta_conf = pdata;//ÉèÖÃWiFi station µÄ²ÎÊı£¬²¢±£´æµ½ flash
+            struct station_config *sta_conf = pdata;//è®¾ç½®WiFi station çš„å‚æ•°ï¼Œå¹¶ä¿å­˜åˆ° flash
                //s_staconf = pdata;
             memcpy(&s_staconf,sta_conf,sizeof(struct station_config));
 	        wifi_station_set_config(sta_conf);	
@@ -66,20 +66,62 @@ static void messageArrived(MessageData* data)
 {
     printf("Message arrived: %s\n", data->message->payload);
 
+    cJSON * RJson = cJSON_Parse(data->message->payload);
+    cJSON *  RSub = cJSON_GetObjectItem(RJson, "data");
+	if(RSub==NULL)
+	{
+		os_printf("\r\n get data false!!! \r\n");
+		//cJSON_Delete(RJson);//è¿™é‡Œå…ˆä¸å¤„ç† æœ€åç›´æ¥free
+
+		//é€ä¼ æ•°æ®
+		uint16_t i;
+		uint8_t *pdata=data->message->payload;
+		for(i=0;i<data->message->payloadlen;i++)
+		{
+			uart_tx_one_char(0,(uint8_t) *(pdata+i));
+		}		
+	}
+	else
+	{
+		os_printf(" data :%s\r\n",RSub->valuestring);
+
+		if(strcmp(RSub->valuestring,"updata")==0)
+		{
+			struct version_struct_t version_struct;
+
+			version_struct=version_scr_json_parase(data->message->payload);
+			
+		}
+		else
+		{
+			//é€ä¼ æ•°æ®
+			uint16_t i;
+			uint8_t *pdata=data->message->payload;
+			for(i=0;i<data->message->payloadlen;i++)
+			{
+				uart_tx_one_char(0,(uint8_t) *(pdata+i));
+			}
+
+		}
+		
+	}
+	cJSON_Delete(RJson);
+
+	
 	if(strstr(data->message->payload,"version:"))
 	{
 		char *p=NULL;
-		p=strchr(data->message->payload,':');//ÕÒµ½Ã°ºÅ
+		p=strchr(data->message->payload,':');//æ‰¾åˆ°å†’å·
 		
-		if((strcmp(DoorLockVersionValue.versionName,hardWareVersion)==0)&&(os_strcmp(DoorLockVersionValue.softwareVersion,SOFTWAREVERSION)>0))	
+		if((strcmp(DoorLockVersionValue.versionName,hardWareVersion)==0)&&(os_strcmp(DoorLockVersionValue.softwareVersion,SOFTWAREVERSION)>0))
+		{
+			
+		}
 	}
+
+	
     
-	uint16_t i;
-	uint8_t *pdata=data->message->payload;
-	for(i=0;i<data->message->payloadlen;i++)
-	{
-	    uart_tx_one_char(0,(uint8_t) *(pdata+i));
-    }
+
 }
 
 uint8_t mqtt_task_status_get()
@@ -115,10 +157,10 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 	memset(mqtt_PUBLISH,0,sizeof(mqtt_PUBLISH));
 	memset(mqtt_SUBSCRIBE,0,sizeof(mqtt_SUBSCRIBE));
 
-	sprintf(mqtt_PUBLISH,"device/dc:"MACSTR,MAC2STR(sta_mac));
-	sprintf(mqtt_SUBSCRIBE,"user/dc:"MACSTR,MAC2STR(sta_mac));
+	sprintf(mqtt_PUBLISH,"\"device/dc:"MACSTR"\"",MAC2STR(sta_mac));
+	sprintf(mqtt_SUBSCRIBE,"\"user/dc:"MACSTR"\"",MAC2STR(sta_mac));
 
-    if(storage_list.ssid[0]==0&&storage_list.passowrd[0]==0)//Ã»ip
+    if(storage_list.ssid[0]==0&&storage_list.passowrd[0]==0)//æ²¡ip
     {
     
     	wifi_set_mode(STATION_MODE);
@@ -143,7 +185,7 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 		printf("\r\n waitforip \r\n");
 		vTaskDelay(3000 / portTICK_RATE_MS);
 		wait_ip_cont++;
-		if(storage_list.ssid[0]==0&&storage_list.passowrd[0]==0)//Ã»ip
+		if(storage_list.ssid[0]==0&&storage_list.passowrd[0]==0)//æ²¡ip
 		{
 			mqtt_task_status=mqtt_task_status_WAITMARTLINK;
 			//if(wait_ip_cont==60)system_restart();
@@ -151,7 +193,7 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 		else
 		{
 			mqtt_task_status=mqtt_task_status_WAITWIFI;
-			if(wait_ip_cont==60)system_restart();//60ÃëÃ»Á¬ÉÏÂ·ÓÉÆ÷
+			if(wait_ip_cont==60)system_restart();//60ç§’æ²¡è¿ä¸Šè·¯ç”±å™¨
 		}
 		
 		
@@ -170,7 +212,7 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 
 			if(mqtt_err_cont++==4)
 			{
-				printf("\r\n mqtt_err_cont 4 restart\r\n");
+				printf("\r\n mqtt_err_cont 4 restart\r\n");
 				system_restart();
 			}
 
@@ -192,17 +234,17 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 			if ((rc = MQTTConnect(&client, &connectData)) != 0) {
 				printf("Return code from MQTT connect is %d\n", rc);
 				network.disconnect(&network);
-				continue;//ÖØ¸´µÈ´ı
+				continue;//é‡å¤ç­‰å¾…
 			} else {
 				printf("MQTT Connected\n");
 			}
-			//if(task_first_flag==false)//TASKÖ»ÔËĞĞÒ»´Î
+			//if(task_first_flag==false)//TASKåªè¿è¡Œä¸€æ¬¡
 			{
 				task_first_flag=true;
 				if ((rc = MQTTStartTask(&client)) != pdPASS) {
 					printf("Return code from start tasks is %d\n", rc);
 					network.disconnect(&network);
-					continue;//ÖØ¸´µÈ´ı
+					continue;//é‡å¤ç­‰å¾…
 				} else {
 					printf("Use MQTTStartTask\n");
 				}
@@ -213,7 +255,7 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 			if ((rc = MQTTSubscribe(&client,mqtt_SUBSCRIBE, QOS0, messageArrived)) != 0) {
 				printf("Return code from MQTT subscribe is %d\n", rc);
 				network.disconnect(&network);
-				continue;//ÖØ¸´µÈ´ı
+				continue;//é‡å¤ç­‰å¾…
 			} else {
 				printf("MQTT subscribe to topic %s \n",mqtt_SUBSCRIBE);
 			}
@@ -232,7 +274,7 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 					case mqtt_task_status_IDLE:
 					{
 
-						if((mqtt_task_cont%40==2))//1.2s¼ì²éÒ»´Îmqtt
+						if((mqtt_task_cont%40==2))//1.2sæ£€æŸ¥ä¸€æ¬¡mqtt
 						{
 							if(client.isconnected==0)
 							{	
@@ -273,7 +315,7 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 						}
 						
 
-						if(FIFO_IsDataExit(&mqtt_fifo))//ÈôFIFO»¹´æÔÚ
+						if(FIFO_IsDataExit(&mqtt_fifo))//è‹¥FIFOè¿˜å­˜åœ¨
 						{
 							uint16_t len;
 							uint8_t data_buf[256];
@@ -315,7 +357,7 @@ static void ICACHE_FLASH_ATTR mqtt_task(void *pvParameters)
 					break;
 				}
 			}
-			//mqtt¶Ï¿ª´¦Àí
+			//mqttæ–­å¼€å¤„ç†
 
 		}
 		else

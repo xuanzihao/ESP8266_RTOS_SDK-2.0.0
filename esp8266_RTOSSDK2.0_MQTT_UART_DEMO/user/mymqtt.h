@@ -55,12 +55,12 @@
 
 enum
 {
-	mqtt_task_status_INIT=0,//³õÊ¼»¯
-	mqtt_task_status_WAITMARTLINK=1,//µÈ´ısmartlink
-	mqtt_task_status_WAITWIFI,//µÈ´ıÁ¬½Ówifi
-	mqtt_task_status_WAITM2M,//Á¬½Ówifi³É¹¦£¬µÈ´ıÁ¬½ÓMQTT
-	mqtt_task_status_IDLE,//Õı³££¬Í¸´«
-	mqtt_task_status_OTA,//ÕıÔÚOTA
+	mqtt_task_status_INIT=0,//åˆå§‹åŒ–
+	mqtt_task_status_WAITMARTLINK=1,//ç­‰å¾…smartlink
+	mqtt_task_status_WAITWIFI,//ç­‰å¾…è¿æ¥wifi
+	mqtt_task_status_WAITM2M,//è¿æ¥wifiæˆåŠŸï¼Œç­‰å¾…è¿æ¥MQTT
+	mqtt_task_status_IDLE,//æ­£å¸¸ï¼Œé€ä¼ 
+	mqtt_task_status_OTA,//æ­£åœ¨OTA
 };
 
 fifo_t          mqtt_fifo;
