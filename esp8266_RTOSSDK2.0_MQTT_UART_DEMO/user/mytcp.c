@@ -257,7 +257,7 @@ void hexdump(const unsigned char *buf, uint32 num)
 
 /*EDP*/
 RecvBuffer* recv_buf;
-EdpPacket* pkg;
+EdpPacket* pkg;//edp的结构体
 char* src_devid;
 char* push_data;
 uint32 push_datalen;
@@ -273,10 +273,7 @@ uint32 save_binlen;
 unsigned short msg_id=0;
 unsigned char save_date_ret;
 
-
-
-
-
+//tcp数据解析函数
 void ICACHE_FLASH_ATTR tcp_client_parse(char *buffer ,int len)
 {
 	uint8 mtype,jsonorbin;
@@ -798,7 +795,7 @@ static void ICACHE_FLASH_ATTR tcp_client_task(void *pvParameters)
 					if(false == wifi_station_connected())
 					break;
 
-					vTaskDelay(30/portTICK_RATE_MS);
+					vTaskDelay(30/portTICK_RATE_MS);//延时时间为30ms
 				}
 TCP_CLIENT_END:
 				new_tcp_disconnect(tcp_fd);
@@ -810,17 +807,17 @@ TCP_CLIENT_END:
 	//CLIENT_END:
 	}
 }
-
+//获取tcp任务的句柄
 xTaskHandle  ICACHE_FLASH_ATTR tcp_client_handle_get()
 {
 	return 	wifiClientHandle;
 }
-
+//建立tcp任务
 void ICACHE_FLASH_ATTR tcp_client_start()
 {
 	xTaskCreate(tcp_client_task, "tcp_client", 4096, NULL, 5, tcp_client_handle_get());
 }
-
+//是否断开链接
 uint8_t ICACHE_FLASH_ATTR tcp_client_isconnect()
 {
 	return tcp_client_isconnect_flag;

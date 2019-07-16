@@ -320,6 +320,7 @@ void soft_ap_init(void)
     IP4_ADDR(&info.gw, 192, 168, 5, 1); // set gateway
     IP4_ADDR(&info.netmask, 255, 255, 255, 0); // set netmask
     wifi_set_ip_info(SOFTAP_IF, &info);
+    
     struct dhcps_lease dhcp_lease;
     IP4_ADDR(&dhcp_lease.start_ip, 192, 168, 5, 100);
     IP4_ADDR(&dhcp_lease.end_ip, 192, 168, 5, 105);

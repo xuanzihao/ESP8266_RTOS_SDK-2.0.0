@@ -27,12 +27,12 @@ uint8_t tcp_client_isconnect();
 int tcp_client_state;
 enum
 {
-	tcp_client_state_CLR=0,
-	tcp_client_state_CLREND,
+	tcp_client_state_CLR=0,//登陆
+	tcp_client_state_CLREND,//登陆后
 	
-	tcp_client_state_HEART,
+	tcp_client_state_HEART,//发送心跳 
 
-	tcp_client_state_SENDDATA,
+	tcp_client_state_SENDDATA,//发送数据
 };
 
 

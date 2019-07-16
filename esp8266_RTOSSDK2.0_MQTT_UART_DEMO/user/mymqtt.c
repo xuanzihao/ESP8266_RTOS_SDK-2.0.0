@@ -113,15 +113,11 @@ static void messageArrived(MessageData* data)
 		char *p=NULL;
 		p=strchr(data->message->payload,':');//找到冒号
 		
-		if((strcmp(DoorLockVersionValue.versionName,hardWareVersion)==0)&&(os_strcmp(DoorLockVersionValue.softwareVersion,SOFTWAREVERSION)>0))
+		//if((strcmp(DoorLockVersionValue.versionName,hardWareVersion)==0)&&(os_strcmp(DoorLockVersionValue.softwareVersion,SOFTWAREVERSION)>0))
 		{
 			
 		}
 	}
-
-	
-    
-
 }
 
 uint8_t mqtt_task_status_get()
