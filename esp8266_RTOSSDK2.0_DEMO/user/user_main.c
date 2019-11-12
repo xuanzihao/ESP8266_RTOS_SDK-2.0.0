@@ -40,6 +40,9 @@
 #include "mywebserver.h"
 #include "mytcpserver.h"
 
+#include "rsa.h"
+
+
 
 
 
@@ -237,7 +240,7 @@ void key2ShortPress()
 
 /*******************************************************************************
 * Function Name  : keyInit
-* Description    : 按键初始化函数
+* Description    : 按键初始化函�?
 * Input          : none
 * Output         : None
 * Return         : none
@@ -310,7 +313,7 @@ LOCAL void ICACHE_FLASH_ATTR rf_task(void *pvParameters)
 		{	  
 			RF_ClearFIFO();
 			RF_ClearStatus ();  
-			os_printf("\r\n 发送完成 \r\n");
+			os_printf("\r\n 发送完�?\r\n");
 		} //PC_CR2=0x020; 	
 		os_printf("\r\n ucRF_GetStatus:%d \r\n",ucRF_GetStatus());
 
@@ -347,7 +350,75 @@ LOCAL void ICACHE_FLASH_ATTR rf_task(void *pvParameters)
 }
 
 
+void rsa_test()
+{
+	uint32 gt1 = 0, gt2 = 0, gt = 0;
+	uint32 et1 = 0, et2 = 0, et = 0;
+	uint32 dt1 = 0, dt2 = 0, dt = 0;
+	
+	uint32 et_sum = 0, dt_sum = 0, gt_sum=0,et_aver = 0, dt_aver = 0,gt_aver=0;
 
+	size_t len;
+	mbedtls_rsa_context rsa;
+    unsigned char rsa_plaintext[24];
+    unsigned char rsa_decrypted[24];
+    unsigned char rsa_ciphertext[512];
+
+    memcpy(rsa_plaintext,"0123456789",10);
+
+
+	mbedtls_rsa_init( &rsa, MBEDTLS_RSA_PKCS_V15, 0 );
+
+	
+	gt1 = system_get_time();
+	if(mbedtls_rsa_gen_key(&rsa, rand, NULL, 2048, 65537) != 0) 
+	{
+		printf("\r\n gen key error \r\n");
+		return ;
+	}
+	gt2 = system_get_time();
+	gt = (gt2 - gt1)/1000;
+	printf("gt=%d \r\n",gt);
+	gt_sum += gt;	
+
+	if( mbedtls_rsa_check_pubkey(  &rsa ) != 0 ||
+		mbedtls_rsa_check_privkey( &rsa ) != 0 )
+	{
+		printf("check key error \n");
+		return ;
+	}
+	et1 = system_get_time();
+	
+	if( mbedtls_rsa_pkcs1_encrypt( &rsa, rand, NULL, MBEDTLS_RSA_PUBLIC, 24,
+						   rsa_plaintext, rsa_ciphertext ) != 0 )
+	{
+			printf( "failed\n" );
+			return;
+	}
+	
+
+   et2 = system_get_time();
+   et = (et2 - et1)/1000;
+   et_sum += et;
+   printf("et=%d \r\n",et);
+
+   dt1 = system_get_time();
+   if( mbedtls_rsa_pkcs1_decrypt( &rsa, rand, NULL, MBEDTLS_RSA_PRIVATE, &len,
+						  rsa_ciphertext, rsa_decrypted,
+						  sizeof(rsa_decrypted) ) != 0 )
+   {
+	   printf( "failed\n" );
+	   return ;
+   }
+   printf("len=%d\r\n",len);
+   dt2 = system_get_time();
+   dt = (dt2 - dt1)/1000;
+   dt_sum += dt;
+   printf("dt=%d \r\n",dt);
+   
+
+	
+}
 
 
 /******************************************************************************
