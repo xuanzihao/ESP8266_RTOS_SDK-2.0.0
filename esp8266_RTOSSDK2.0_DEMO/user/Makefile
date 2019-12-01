@@ -38,13 +38,13 @@ endif
 #
 INCLUDES := $(INCLUDES) -I $(PDIR)include
 INCLUDES += -I ./
-INCLUDES += -I ../sample_lib/azureiot/azure-c-shared-utility/inc
-INCLUDES += -I ../sample_lib/azureiot/azure-umqtt-c/inc
-INCLUDES += -I ../sample_lib/azureiot/parson
-INCLUDES += -I ../sample_lib/azureiot/iothub_client/inc
-INCLUDES += -I ../../../include/espressif/esp8266
-INCLUDES += -I ../../../include
-INCLUDES += -I ../../../include/openssl
+#INCLUDES += -I ../sample_lib/azureiot/azure-c-shared-utility/inc
+#INCLUDES += -I ../sample_lib/azureiot/azure-umqtt-c/inc
+#INCLUDES += -I ../sample_lib/azureiot/parson
+#INCLUDES += -I ../sample_lib/azureiot/iothub_client/inc
+#INCLUDES += -I ../../../include/espressif/esp8266
+#INCLUDES += -I ../../../include
+#INCLUDES += -I ../../../include/openssl
 PDIR := ../$(PDIR)
 
 sinclude $(PDIR)Makefile

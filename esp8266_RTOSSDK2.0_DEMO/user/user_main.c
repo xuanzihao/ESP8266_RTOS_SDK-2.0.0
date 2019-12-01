@@ -40,9 +40,8 @@
 #include "mywebserver.h"
 #include "mytcpserver.h"
 
-#include "rsa.h"
-
-
+//#include "rsa.h"
+#include "hkc.h"
 
 
 
@@ -59,11 +58,24 @@ LOCAL key0_status=0;
 LOCAL key1_status=0;
 LOCAL key2_status=0;
 
+uint8_t key_aid=0;
+uint8_t key0_iid=0;
+uint8_t key1_iid=0;
+uint8_t key2_iid=0;
+
+cJSON * key0_cjsonvalue;
+cJSON * key1_cjsonvalue;
+cJSON * key2_cjsonvalue;
+
+
+uint8_t homekit_init_flag=0;
 
 
 
 
- 
+
+
+
 
 
 /******************************************************************************
@@ -190,18 +202,47 @@ void key0LongPress()
 {
 	os_printf("\r\n key0LongPress! \r\n");
 	//GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_0O_IO_NUM), key0_status); 
-	setKey(0,key0_status);
+	//setKey(0,key0_status);
+
+
+	GPIO_OUTPUT_SET(GPIO_ID_PIN(LED1_IO_NUM),1);
+	vTaskDelay(1000/portTICK_RATE_MS);
+	GPIO_OUTPUT_SET(GPIO_ID_PIN(LED1_IO_NUM),0);
+	memset(&storage_list,0,sizeof(storage_list));
+	system_param_save_with_protect(XZH_PARAM_START_SEC,(void *)&storage_list,sizeof(storage_list));
+	printf("\r\n system_param_save_with_protect storage_list ok sec=%d len=%d \r\n",XZH_PARAM_START_SEC,sizeof(storage_list));
+	system_restore();		//恢复出厂设置，清除保存的WiFi信息
+	system_restart();		//系统重启
+
+	
+	
 }
 void key0ShortPress()
 {
 	os_printf("\r\n key0ShortPress! \r\n");
 	key0_status=!key0_status;
-	//GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_0O_IO_NUM), key0_status); 
-	setKey(0,key0_status);
+	GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_0O_IO_NUM), key0_status); 
+	
+	//setKey(0,key0_status);
+
+	if(homekit_init_flag)
+	{
+		key0_cjsonvalue->type=key0_status;
+		change_value(	key_aid,key0_iid,key0_cjsonvalue);
+		send_events(NULL,key_aid,key0_iid);
+
+	}
+	
+
+
+	
 }
 void key1LongPress()
 {
 	os_printf("\r\n key1LongPress! \r\n");
+	GPIO_OUTPUT_SET(GPIO_ID_PIN(LED1_IO_NUM),1);
+	vTaskDelay(1000/portTICK_RATE_MS);
+	GPIO_OUTPUT_SET(GPIO_ID_PIN(LED1_IO_NUM),0);
 
 	memset(&storage_list,0,sizeof(storage_list));
 	system_param_save_with_protect(XZH_PARAM_START_SEC,(void *)&storage_list,sizeof(storage_list));
@@ -215,14 +256,38 @@ void key1ShortPress()
 {
 	key1_status=!key1_status;
 	os_printf("\r\n key1ShortPress! \r\n");
-	//GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_1O_IO_NUM), key1_status); 
-	setKey(1,key1_status);
+	GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_1O_IO_NUM), key1_status); 
+	//setKey(1,key1_status);
+	
+
+	if(homekit_init_flag)
+	{
+		key1_cjsonvalue->type=key1_status;
+		change_value(	key_aid,key1_iid,key1_cjsonvalue);
+		send_events(NULL,key_aid,key1_iid);
+
+	}
+	
+
+
+
+	
 }
 void key2LongPress()
 {
 	os_printf("\r\n key2LongPress! \r\n");
 	//GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_2O_IO_NUM), key2_status); 
-	setKey(2,key2_status);
+	//setKey(2,key2_status);
+	
+	GPIO_OUTPUT_SET(GPIO_ID_PIN(LED1_IO_NUM),1);
+	vTaskDelay(1000/portTICK_RATE_MS);
+	GPIO_OUTPUT_SET(GPIO_ID_PIN(LED1_IO_NUM),0);
+	memset(&storage_list,0,sizeof(storage_list));
+	system_param_save_with_protect(XZH_PARAM_START_SEC,(void *)&storage_list,sizeof(storage_list));
+	printf("\r\n system_param_save_with_protect storage_list ok sec=%d len=%d \r\n",XZH_PARAM_START_SEC,sizeof(storage_list));
+	system_restore();		//恢复出厂设置，清除保存的WiFi信息
+	
+	system_restart();		//系统重启
 
 	
 }
@@ -230,8 +295,18 @@ void key2ShortPress()
 {
 	key2_status=!key2_status;
 	os_printf("\r\n key2ShortPress! \r\n");
-	//GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_2O_IO_NUM), key2_status); 
-	setKey(2,key2_status);
+	GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_2O_IO_NUM), key2_status); 
+	//setKey(2,key2_status);
+	
+
+	if(homekit_init_flag)
+	{
+		key2_cjsonvalue->type=key2_status;
+		change_value(	key_aid,key2_iid,key2_cjsonvalue);
+		send_events(NULL,key_aid,key2_iid);
+	}
+
+	
 }
 
 
@@ -265,6 +340,11 @@ LOCAL void ICACHE_FLASH_ATTR keyInit(void)
 	GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_0O_IO_NUM), key0_status); 
 	GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_1O_IO_NUM), key1_status); 
 	GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_2O_IO_NUM), key2_status); 
+
+
+	//LED指示
+	PIN_FUNC_SELECT(LED1_IO_MUX, LED1_IO_FUNC); 
+	GPIO_OUTPUT_SET(GPIO_ID_PIN(LED1_IO_NUM),0);
 
 #else 
 	PIN_FUNC_SELECT(KEY_0_IO_MUX, KEY_0_IO_FUNC); 
@@ -349,7 +429,7 @@ LOCAL void ICACHE_FLASH_ATTR rf_task(void *pvParameters)
 
 }
 
-
+#if 0
 void rsa_test()
 {
 	uint32 gt1 = 0, gt2 = 0, gt = 0;
@@ -419,8 +499,197 @@ void rsa_test()
 
 	
 }
+#endif
+
+void led(int aid, int iid, cJSON *value, int mode)
+{
+   	os_printf("\r\n aid=%d iid=%d mode=%d \r\n",aid,iid,mode);
+
+    switch (mode) {
+        case 1: { //changed by gui
+            char *out; out=cJSON_Print(value);  os_printf("led %s\n value->type=%d ",out,value->type);  free(out);  // Print to text, print it, release the string.
+
+			if(iid==key2_iid)
+			{
+				os_printf("\r\n key2_iid \r\n");
+				if (value->type) 
+				{
+					key2_status=1;
+					GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_2O_IO_NUM), 1);
+				}
+				else 
+				{
+					key0_status=0;
+					key0_cjsonvalue->type=key0_status;
+					GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_2O_IO_NUM), 0);
+				}
+			}
+			else if(iid==key1_iid)
+			{
+				os_printf("\r\n key1_iid \r\n");
+				if (value->type) 
+				{
+					key1_status=1;
+					GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_1O_IO_NUM), 1);
+				}
+				else 
+				{
+					key1_status=0;
+					key1_cjsonvalue->type=key1_status;
+					GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_1O_IO_NUM), 0);
+				}
+
+			}
+			else if(iid==key0_iid)
+			{
+				os_printf("\r\n key0_iid \r\n");
+				if (value->type) 
+				{
+					key0_status=1;
+					GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_0O_IO_NUM), 1);
+
+				}
+				else 
+				{
+					key0_status=0;
+					GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_0O_IO_NUM), 0);
+				}
+
+			}
+			
+            
+        }break;
+        case 0: { //init
+
+		key0_cjsonvalue=cJSON_CreateBool(0); //value doesn't matter
+		key1_cjsonvalue=cJSON_CreateBool(0); //value doesn't matter
+		key2_cjsonvalue=cJSON_CreateBool(0); //value doesn't matter
+
+		homekit_init_flag=1;
+        
+        }break;
+        case 2: { //update
+            //do nothing
+        }break;
+        default: {
+            //print an error?
+        }break;
+    }
+}
+
+void identify(int aid, int iid, cJSON *value, int mode)
+{
+    switch (mode) {
+        case 1: { //changed by gui
+          //  xQueueSend(identifyQueue,NULL,0);
+        }break;
+        case 0: { //init
+       // identifyQueue = xQueueCreate( 1, 0 );
+      //  xTaskCreate(identify_task,"identify",256,NULL,2,NULL);
+        }break;
+        case 2: { //update
+            //do nothing
+        }break;
+        default: {
+            //print an error?
+        }break;
+    }
+}
 
 
+extern  cJSON       *root;
+void    hkc_user_init(char *accname)
+{
+    //do your init thing beyond the bear minimum
+    //avoid doing it in user_init else no heap left for pairing
+    cJSON *accs,*sers,*chas,*value;
+    int aid=0,iid=0;
+
+    accs=initAccessories();
+    
+    sers=addAccessory(accs,++aid);
+    //service 0 describes the accessory
+    chas=addService(      sers,++iid,APPLE,ACCESSORY_INFORMATION_S);
+    addCharacteristic(chas,aid,++iid,APPLE,NAME_C,accname,NULL);
+    addCharacteristic(chas,aid,++iid,APPLE,MANUFACTURER_C,"XZH",NULL);
+    addCharacteristic(chas,aid,++iid,APPLE,MODEL_C,"CMKG",NULL);
+    addCharacteristic(chas,aid,++iid,APPLE,SERIAL_NUMBER_C,"2",NULL);
+    addCharacteristic(chas,aid,++iid,APPLE,IDENTIFY_C,NULL,identify);
+
+    
+    //service 1
+    #if 0
+    chas=addService(      sers,++iid,APPLE,SWITCH_S);
+    addCharacteristic(chas,aid,++iid,APPLE,NAME_C,"led1",NULL);
+    addCharacteristic(chas,aid,++iid,APPLE,POWER_STATE_C,"1",led);
+    key_aid=aid;
+    key2_iid=iid;
+    #endif
+
+    #if 1
+
+    //service 2
+    chas=addService(      sers,++iid,APPLE,SWITCH_S);
+    addCharacteristic(chas,aid,++iid,APPLE,NAME_C,"led2",NULL);
+    addCharacteristic(chas,aid,++iid,APPLE,POWER_STATE_C,"1",led);
+
+	key1_iid=iid;
+	#endif
+
+
+	#if 0
+    //service 2
+    chas=addService(      sers,++iid,APPLE,SWITCH_S);
+    addCharacteristic(chas,aid,++iid,APPLE,NAME_C,"led3",NULL);
+    addCharacteristic(chas,aid,++iid,APPLE,POWER_STATE_C,"1",led);
+    key0_iid=iid;
+    #endif
+
+	
+
+    char *out;
+    out=cJSON_Print(root);  os_printf("%s\n",out);  free(out);  // Print to text, print it, release the string.
+
+//  for (iid=1;iid<MAXITM+1;iid++) {
+//      out=cJSON_Print(acc_items[iid].json);
+//      os_printf("1.%d=%s\n",iid,out); free(out);
+//  }
+}
+
+
+
+extern void ICACHE_FLASH_ATTR smartconfig_done(sc_status status, void *pdata);
+
+
+void smart_link_done_cb()
+{
+	//hkc_init("xuanzihao-led");
+	system_restart();
+}
+
+void initDoneTimerCb()
+{
+
+	//vTaskDelay(1000/portTICK_RATE_MS);
+	if(storage_list.ssid[0]==0&&storage_list.passowrd[0]==0)//没ip
+	{
+		wifi_set_mode(STATION_MODE);
+		smartconfig_stop();
+		smartconfig_set_type(SC_TYPE_ESPTOUCH_AIRKISS); //SC_TYPE_ESPTOUCH,SC_TYPE_AIRKISS,SC_TYPE_ESPTOUCH_AIRKISS
+		smartconfig_start(smartconfig_done);
+		printf("\r\n smartconfig \r\n");
+
+	}
+	else
+	{
+		start_wifi_station(storage_list.ssid, storage_list.passowrd);
+		printf("\r\n start_wifi_station \r\n");
+		hkc_init("xuanzihao-led");
+		printf("\r\n hkc_init \r\n");
+	}
+
+}
+os_timer_t initDoneTimer;
 /******************************************************************************
  * FunctionName : user_init
  * Description  : entry of user application, init user function here
@@ -435,9 +704,8 @@ void user_init(void)
 
 	uart_init_new();
     printf("SDK version:%s\n", system_get_sdk_version());
-    vTaskDelay(2000/portTICK_RATE_MS);
+   
     
-
 	if(system_param_load(XZH_PARAM_START_SEC,0,(void *)&storage_list,sizeof(storage_list))==true)
 	{
 		printf("\r\n system_param_load storage_list ok sec=%d len=%d \r\n",XZH_PARAM_START_SEC,sizeof(storage_list));
@@ -445,20 +713,37 @@ void user_init(void)
 	
 	if(storage_list.init_flag!=STORAGE_INIT)
 	{
+		
+		memset(&storage_list,0,sizeof(storage_list));
 		storage_list.init_flag=STORAGE_INIT;
 		system_param_save_with_protect(XZH_PARAM_START_SEC,(void *)&storage_list,sizeof(storage_list));
 		printf("\r\n system_param_save_with_protect storage_list ok sec=%d len=%d \r\n",XZH_PARAM_START_SEC,sizeof(storage_list));
+
+		//初始化 homekit 这里0xaf记住要看库的位置。。。。懒得将.h包含进来了
+		char    flash[80];
+		memset(flash,0,sizeof(flash));
+		spi_flash_write(0xAF*0x1000+4080,(uint32 *)flash,16);
+
+
+		
 	} 
     set_on_station_connect(on_wifi_connect);
     set_on_station_disconnect(on_wifi_disconnect);
     init_esp_wifi();//
+
+
+
+	os_timer_disarm( (os_timer_t *)&initDoneTimer);
+	os_timer_setfn((os_timer_t *)&initDoneTimer, (os_timer_func_t * ) initDoneTimerCb, NULL);
+	os_timer_arm((os_timer_t *)&initDoneTimer, 100, 0);
+
     //stop_wifi_ap();
 	//tcp_client_start();
 
 	//softAP_init();
-	soft_ap_init();
+	//soft_ap_init();
 	//vTaskDelay(1000/portTICK_RATE_MS);
-	TcpLocalServer();
+	//TcpLocalServer();
 	//web_server_start();
 //	xTaskCreate(rf_task, "rf_task", 4096, NULL, 6, NULL);
 }

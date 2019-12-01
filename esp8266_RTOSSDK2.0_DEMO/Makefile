@@ -23,7 +23,6 @@ GEN_BINS= eagle.app.v6.bin
 SPECIAL_MKTARGETS=$(APP_MKTARGETS)
 SUBDIRS=    \
 	user    
-
 endif # } PDIR
 
 LDDIR = $(SDK_PATH)/ld
@@ -79,6 +78,7 @@ LINKFLAGS_eagle.app.v6 = \
 	-lwpa	\
 	-lwps		\
 	-lairkiss \
+	-lhkc	\
 	$(DEP_LIBS_eagle.app.v6)					\
 	-Wl,--end-group
 
@@ -125,9 +125,11 @@ DDEFINES +=				\
 #
 
 INCLUDES := $(INCLUDES) -I $(PDIR)include
-INCLUDES += $(INCLUDES) -I $(PDIR)include\espressif
+#INCLUDES += $(INCLUDES) -I $(PDIR)include\espressif
+INCLUDES += -I $(SDK_PATH)/include/freertos
 #INCLUDES += -I $(PDIR)/user		#自己加的，编译时需要用到里面的.h文件
 sinclude $(SDK_PATH)/Makefile
+
 
 .PHONY: FORCE
 FORCE:

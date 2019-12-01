@@ -12,10 +12,10 @@
  * you can change to other sector if you use other size spi flash. */
 #define ESP_PARAM_START_SEC		0x3f8
 
-#define XZH_PARAM_START_SEC		0xFC//0x7cflash数据保存的扇区地址
+#define XZH_PARAM_START_SEC		0xAA//0x7cflash数据保存的扇区地址
 
 
-#define HSJ_PARAM_START_SEC		0xFC//0x7cflash数据保存的扇区地址
+#define HSJ_PARAM_START_SEC		0xAA//0x7cflash数据保存的扇区地址
 
 #define ESP_PARAM_SAVE_0    1
 #define ESP_PARAM_SAVE_1    2
@@ -42,6 +42,7 @@ typedef struct
 	uint8_t ssid[32];
 	uint8_t passowrd[64];
 	uint8_t device_id[10];
+	uint8_t homekit_init_flag;
 }Storage_list;
 
 

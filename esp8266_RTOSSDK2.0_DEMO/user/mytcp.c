@@ -517,6 +517,7 @@ void ICACHE_FLASH_ATTR tcp_client_parse(char *buffer ,int len)
 	DeleteBuffer(&pkg);
 }
 
+extern void smart_link_done_cb();
 struct station_config s_staconf;//路由器信息结构体
 uint8 phone_ip[4] = {0,0,0,0};//用来保存手机IP，在mDNS中给手机进行鉴别；
 void ICACHE_FLASH_ATTR smartconfig_done(sc_status status, void *pdata)
@@ -559,7 +560,9 @@ void ICACHE_FLASH_ATTR smartconfig_done(sc_status status, void *pdata)
                 os_printf("\r\n");
             }
 			smartconfig_stop();
-	
+
+			smart_link_done_cb();
+
             break;
     }
 	
@@ -575,13 +578,14 @@ static void ICACHE_FLASH_ATTR tcp_client_task(void *pvParameters)
 	uint8_t sntp_init_flag=0;
 
 	EdpPacket* send_pkg;
+	vTaskDelay(2000/portTICK_RATE_MS);
     if(storage_list.ssid[0]==0&&storage_list.passowrd[0]==0)//没ip
     {
     	wifi_set_mode(STATION_MODE);
 		smartconfig_stop();
 		smartconfig_set_type(SC_TYPE_ESPTOUCH_AIRKISS); //SC_TYPE_ESPTOUCH,SC_TYPE_AIRKISS,SC_TYPE_ESPTOUCH_AIRKISS
 		smartconfig_start(smartconfig_done);
-		printf("\r\n smartconfig \r\n");
+		printf("smartconfig \r\n");
 
     }
     else
@@ -589,6 +593,8 @@ static void ICACHE_FLASH_ATTR tcp_client_task(void *pvParameters)
     	start_wifi_station(storage_list.ssid, storage_list.passowrd);
     	printf("\r\n start_wifi_station \r\n");
     }
+
+    for(;;);
     
 
 	for(;;)
