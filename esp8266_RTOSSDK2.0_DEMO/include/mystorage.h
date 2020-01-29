@@ -43,6 +43,7 @@ typedef struct
 	uint8_t passowrd[64];
 	uint8_t device_id[10];
 	uint8_t homekit_init_flag;
+	uint8_t key_status;
 }Storage_list;
 
 

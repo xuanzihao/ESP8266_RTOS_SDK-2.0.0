@@ -19,9 +19,6 @@
 
 #include "cJSON.h"
 
-extern int     pairing;
-
-
 /******************************************************************************
  * FunctionName : hkc_init
  * Description  : start using hkc. call in user_init

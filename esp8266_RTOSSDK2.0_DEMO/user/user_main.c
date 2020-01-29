@@ -44,6 +44,24 @@
 #include "hkc.h"
 
 
+#define USE_KEY0 0	//使用key0
+#define USE_KEY1 1	//使用key1
+#define USE_KEY2 0	//使用key2
+
+#define KEY0_MASK 0x01
+#define KEY1_MASK 0x02
+#define KEY2_MASK 0x04
+
+
+
+
+#define HEART_CONT_S 60 //心跳 每1分钟
+//#define RESET_CONT_S 3600*24 //重启计时 每24小时
+#define RESET_CONT_S 60*2 //重启计时 每24小时
+
+
+
+
 
 
 
@@ -204,7 +222,7 @@ void key0LongPress()
 	//GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_0O_IO_NUM), key0_status); 
 	//setKey(0,key0_status);
 
-
+	#if USE_KEY0
 	GPIO_OUTPUT_SET(GPIO_ID_PIN(LED1_IO_NUM),1);
 	vTaskDelay(1000/portTICK_RATE_MS);
 	GPIO_OUTPUT_SET(GPIO_ID_PIN(LED1_IO_NUM),0);
@@ -213,6 +231,7 @@ void key0LongPress()
 	printf("\r\n system_param_save_with_protect storage_list ok sec=%d len=%d \r\n",XZH_PARAM_START_SEC,sizeof(storage_list));
 	system_restore();		//恢复出厂设置，清除保存的WiFi信息
 	system_restart();		//系统重启
+	#endif
 
 	
 	
@@ -220,7 +239,12 @@ void key0LongPress()
 void key0ShortPress()
 {
 	os_printf("\r\n key0ShortPress! \r\n");
+	#if USE_KEY0
 	key0_status=!key0_status;
+	if(key0_status)
+	storage_list.key_status|=KEY0_MASK;
+	else 
+	storage_list.key_status&=~KEY0_MASK;
 	GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_0O_IO_NUM), key0_status); 
 	
 	//setKey(0,key0_status);
@@ -232,6 +256,7 @@ void key0ShortPress()
 		send_events(NULL,key_aid,key0_iid);
 
 	}
+	#endif
 	
 
 
@@ -239,7 +264,9 @@ void key0ShortPress()
 }
 void key1LongPress()
 {
-	os_printf("\r\n key1LongPress! \r\n");
+	
+	os_printf("\r\n key1LongPress! \r\n");
+	#if USE_KEY1
 	GPIO_OUTPUT_SET(GPIO_ID_PIN(LED1_IO_NUM),1);
 	vTaskDelay(1000/portTICK_RATE_MS);
 	GPIO_OUTPUT_SET(GPIO_ID_PIN(LED1_IO_NUM),0);
@@ -249,17 +276,21 @@ void key1LongPress()
 	printf("\r\n system_param_save_with_protect storage_list ok sec=%d len=%d \r\n",XZH_PARAM_START_SEC,sizeof(storage_list));
 	system_restore();		//恢复出厂设置，清除保存的WiFi信息
 	system_restart();		//系统重启
+	#endif
 
 	
 }
 void key1ShortPress()
 {
-	key1_status=!key1_status;
 	os_printf("\r\n key1ShortPress! \r\n");
+	#if USE_KEY1
+	key1_status=!key1_status;
 	GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_1O_IO_NUM), key1_status); 
+	if(key1_status)
+	storage_list.key_status|=KEY1_MASK;
+	else
+	storage_list.key_status&=~KEY1_MASK;
 	//setKey(1,key1_status);
-	
-
 	if(homekit_init_flag)
 	{
 		key1_cjsonvalue->type=key1_status;
@@ -267,6 +298,7 @@ void key1ShortPress()
 		send_events(NULL,key_aid,key1_iid);
 
 	}
+	#endif
 	
 
 
@@ -276,6 +308,7 @@ void key1ShortPress()
 void key2LongPress()
 {
 	os_printf("\r\n key2LongPress! \r\n");
+	#ifdef USE_KEY2
 	//GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_2O_IO_NUM), key2_status); 
 	//setKey(2,key2_status);
 	
@@ -288,13 +321,19 @@ void key2LongPress()
 	system_restore();		//恢复出厂设置，清除保存的WiFi信息
 	
 	system_restart();		//系统重启
+	#endif
 
 	
 }
 void key2ShortPress()
 {
-	key2_status=!key2_status;
 	os_printf("\r\n key2ShortPress! \r\n");
+	#ifdef USE_KEY2
+	key2_status=!key2_status;
+	if(key2_status)
+	storage_list.key_status|=KEY2_MASK;
+	else
+	storage_list.key_status&=~KEY2_MASK;
 	GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_2O_IO_NUM), key2_status); 
 	//setKey(2,key2_status);
 	
@@ -305,13 +344,8 @@ void key2ShortPress()
 		change_value(	key_aid,key2_iid,key2_cjsonvalue);
 		send_events(NULL,key_aid,key2_iid);
 	}
-
-	
+	#endif
 }
-
-
-
-
 
 /*******************************************************************************
 * Function Name  : keyInit
@@ -337,6 +371,14 @@ LOCAL void ICACHE_FLASH_ATTR keyInit(void)
 	PIN_FUNC_SELECT(KEY_1O_IO_MUX, KEY_1O_IO_FUNC); 
 	PIN_FUNC_SELECT(KEY_2O_IO_MUX, KEY_2O_IO_FUNC); 
 
+	//恢复之前的状态
+	if((storage_list.key_status&KEY0_MASK)==KEY0_MASK)
+	key0_status=1;
+	if((storage_list.key_status&KEY1_MASK)==KEY1_MASK)
+	key1_status=1;
+	if((storage_list.key_status&KEY2_MASK)==KEY2_MASK)
+	key2_status=1;
+	
 	GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_0O_IO_NUM), key0_status); 
 	GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_1O_IO_NUM), key1_status); 
 	GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_2O_IO_NUM), key2_status); 
@@ -515,11 +557,13 @@ void led(int aid, int iid, cJSON *value, int mode)
 				if (value->type) 
 				{
 					key2_status=1;
+					storage_list.key_status|=KEY2_MASK;
 					GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_2O_IO_NUM), 1);
 				}
 				else 
 				{
 					key0_status=0;
+					storage_list.key_status&=~KEY2_MASK;
 					key0_cjsonvalue->type=key0_status;
 					GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_2O_IO_NUM), 0);
 				}
@@ -530,11 +574,13 @@ void led(int aid, int iid, cJSON *value, int mode)
 				if (value->type) 
 				{
 					key1_status=1;
+					storage_list.key_status|=KEY1_MASK;
 					GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_1O_IO_NUM), 1);
 				}
 				else 
 				{
 					key1_status=0;
+					storage_list.key_status&=~KEY1_MASK;
 					key1_cjsonvalue->type=key1_status;
 					GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_1O_IO_NUM), 0);
 				}
@@ -546,12 +592,14 @@ void led(int aid, int iid, cJSON *value, int mode)
 				if (value->type) 
 				{
 					key0_status=1;
+					storage_list.key_status|=KEY0_MASK;
 					GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_0O_IO_NUM), 1);
 
 				}
 				else 
 				{
 					key0_status=0;
+					storage_list.key_status&=~KEY0_MASK;
 					GPIO_OUTPUT_SET(GPIO_ID_PIN(KEY_0O_IO_NUM), 0);
 				}
 
@@ -618,7 +666,7 @@ void    hkc_user_init(char *accname)
 
     
     //service 1
-    #if 0
+    #if USE_KEY0
     chas=addService(      sers,++iid,APPLE,SWITCH_S);
     addCharacteristic(chas,aid,++iid,APPLE,NAME_C,"led1",NULL);
     addCharacteristic(chas,aid,++iid,APPLE,POWER_STATE_C,"1",led);
@@ -626,7 +674,7 @@ void    hkc_user_init(char *accname)
     key2_iid=iid;
     #endif
 
-    #if 1
+    #if USE_KEY1
 
     //service 2
     chas=addService(      sers,++iid,APPLE,SWITCH_S);
@@ -637,7 +685,7 @@ void    hkc_user_init(char *accname)
 	#endif
 
 
-	#if 0
+	#if USE_KEY2
     //service 2
     chas=addService(      sers,++iid,APPLE,SWITCH_S);
     addCharacteristic(chas,aid,++iid,APPLE,NAME_C,"led3",NULL);
@@ -690,6 +738,60 @@ void initDoneTimerCb()
 
 }
 os_timer_t initDoneTimer;
+
+
+os_timer_t HeartTimer;//心跳，防止忽然断开，每10分钟上报一次数据
+uint8_t HeartTimer_cont;
+
+void HeartTimerCb()
+{
+	static uint8_t heart_cont=0;
+	static uint16_t reset_cont=0;
+	printf("\r\n HeartTimerCb heart_cont=%d reset_cont=%d \r\n",heart_cont,reset_cont);
+	if(heart_cont++==HEART_CONT_S)
+	{
+		printf("\r\n HeartTimerCb HEART_CONT_S \r\n");
+		heart_cont=0;
+		if(homekit_init_flag)
+		{
+			#if USE_KEY0
+			key0_cjsonvalue->type=key0_status;
+			change_value(	key_aid,key0_iid,key0_cjsonvalue);
+			send_events(NULL,key_aid,key0_iid);
+			#endif
+			
+			#if USE_KEY1
+			key1_cjsonvalue->type=key1_status;
+			change_value(	key_aid,key1_iid,key1_cjsonvalue);
+			send_events(NULL,key_aid,key1_iid);
+			#endif
+		
+			#if USE_KEY2
+			key2_cjsonvalue->type=key2_status;
+			change_value(	key_aid,key2_iid,key2_cjsonvalue);
+			send_events(NULL,key_aid,key2_iid);
+			#endif
+		}
+	}
+
+	if(reset_cont++==RESET_CONT_S)
+	{
+		printf("\r\n HeartTimerCb RESET_CONT_S \r\n");
+		if(storage_list.key_status==0)//没有按键才=0;
+		{
+			reset_cont=0;
+			system_param_save_with_protect(XZH_PARAM_START_SEC,(void *)&storage_list,sizeof(storage_list));//暂时不保存了，没必要
+			system_restart();
+		}
+		else 
+		{
+			reset_cont--;
+		}
+	}
+}
+
+
+
 /******************************************************************************
  * FunctionName : user_init
  * Description  : entry of user application, init user function here
@@ -699,18 +801,15 @@ os_timer_t initDoneTimer;
 void user_init(void)
 {
 	//my_uart_init_new();
+	if(system_param_load(XZH_PARAM_START_SEC,0,(void *)&storage_list,sizeof(storage_list))==true)
+	{
+		//printf("\r\n system_param_load storage_list ok sec=%d len=%d \r\n",XZH_PARAM_START_SEC,sizeof(storage_list));
+	}
 	keyInit();
 //	RF_Init();//test rf 
-
 	uart_init_new();
     printf("SDK version:%s\n", system_get_sdk_version());
    
-    
-	if(system_param_load(XZH_PARAM_START_SEC,0,(void *)&storage_list,sizeof(storage_list))==true)
-	{
-		printf("\r\n system_param_load storage_list ok sec=%d len=%d \r\n",XZH_PARAM_START_SEC,sizeof(storage_list));
-	}
-	
 	if(storage_list.init_flag!=STORAGE_INIT)
 	{
 		
@@ -724,18 +823,22 @@ void user_init(void)
 		memset(flash,0,sizeof(flash));
 		spi_flash_write(0xAF*0x1000+4080,(uint32 *)flash,16);
 
-
-		
 	} 
     set_on_station_connect(on_wifi_connect);
     set_on_station_disconnect(on_wifi_disconnect);
     init_esp_wifi();//
 
 
-
+	//初始化的回调,user_init调smartlink模式不成功
 	os_timer_disarm( (os_timer_t *)&initDoneTimer);
 	os_timer_setfn((os_timer_t *)&initDoneTimer, (os_timer_func_t * ) initDoneTimerCb, NULL);
 	os_timer_arm((os_timer_t *)&initDoneTimer, 100, 0);
+
+	//用于发心跳
+	os_timer_disarm( (os_timer_t *)&HeartTimer);
+	os_timer_setfn((os_timer_t *)&HeartTimer, (os_timer_func_t * ) HeartTimerCb, NULL);
+	os_timer_arm((os_timer_t *)&HeartTimer, 1000, 1);
+
 
     //stop_wifi_ap();
 	//tcp_client_start();
