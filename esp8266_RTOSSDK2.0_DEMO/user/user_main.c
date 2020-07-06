@@ -819,7 +819,7 @@ void user_init(void)
 		system_param_save_with_protect(XZH_PARAM_START_SEC,(void *)&storage_list,sizeof(storage_list));
 		printf("\r\n system_param_save_with_protect storage_list ok sec=%d len=%d \r\n",XZH_PARAM_START_SEC,sizeof(storage_list));
 
-		//初始化 homekit 这里0xaf记住要看库的位置。。。。懒得将.h包含进来了
+		//初始化 homekit 这里0xaf记住要看 hk.h 库的位置。。。。懒得将.h包含进来了
 		char    flash[80];
 		memset(flash,0,sizeof(flash));
 		spi_flash_write(0xAF*0x1000+4080,(uint32 *)flash,16);
