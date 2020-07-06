@@ -709,6 +709,7 @@ void    hkc_user_init(char *accname)
 extern void ICACHE_FLASH_ATTR smartconfig_done(sc_status status, void *pdata);
 
 
+//mytcp.c 里面 smartconfig_done 连接成功后，调这里函数，直接复位了
 void smart_link_done_cb()
 {
 	//hkc_init("xuanzihao-led");
